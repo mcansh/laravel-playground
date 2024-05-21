@@ -8,11 +8,11 @@
 
         @vite("resources/css/app.css")
     </head>
-    <body>
+    <body class="px-4 pt-4">
         <nav>
-            <x-nav-link href="/">Home</x-nav-link>
-            <x-nav-link href="/about">About</x-nav-link>
-            <x-nav-link href="/contact">Contact</x-nav-link>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
         </nav>
         <div class="pt-4">
             {{-- long form --}}
