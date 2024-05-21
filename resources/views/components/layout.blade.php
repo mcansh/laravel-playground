@@ -16,7 +16,17 @@
         <!-- Styles -->
         @vite("resources/css/app.css")
     </head>
-    <body class="grid h-screen place-items-center">
-        <h1 class="text-4xl text-gray-900">Hello World</h1>
+    <body>
+        <nav>
+            <a class="text-blue-700 hover:underline visited:text-indigo-600 active:text-red-600" href="/">Home</a>
+            <a class="text-blue-700 hover:underline visited:text-indigo-600 active:text-red-600" href="/about">About</a>
+            <a class="text-blue-700 hover:underline visited:text-indigo-600 active:text-red-600" href="/contact">Contact</a>
+        </nav>
+        <div class="pt-4">
+        	{{-- long form --}}
+        	{{-- <?php echo $slot; ?> --}}
+ 			{{-- short form --}}
+			{{ $slot }}
+        </div>
     </body>
 </html>
