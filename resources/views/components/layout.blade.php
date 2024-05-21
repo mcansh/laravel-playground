@@ -33,18 +33,21 @@
                                 <x-nav-link
                                     :active="request()->is('/')"
                                     href="/"
+                                    type="desktop"
                                 >
                                     Home
                                 </x-nav-link>
                                 <x-nav-link
-                                    :active="request()->is('about')"
-                                    href="/about"
+                                    :active="request()->is('jobs')"
+                                    href="/jobs"
+                                    type="desktop"
                                 >
-                                    About
+                                    Jobs
                                 </x-nav-link>
                                 <x-nav-link
                                     :active="request()->is('contact')"
                                     href="/contact"
+                                    type="desktop"
                                 >
                                     Contact
                                 </x-nav-link>
@@ -150,31 +153,27 @@
                 {{-- Mobile menu, show/hide based on menu state. --}}
                 <div class="sm:hidden" id="mobile-menu">
                     <div class="space-y-1 pb-3 pt-2">
-                        {{--
-                            Current: "border-indigo-500 bg-indigo-50
-                            text-indigo-700", Default: "border-transparent
-                            text-gray-600 hover:border-gray-300 hover:bg-gray-50
-                            hover:text-gray-800"
-                        --}}
-                        <a
+                        <x-nav-link
+                            type="mobile"
+                            :active="request()->is('/')"
                             href="#"
-                            class="block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700"
-                            aria-current="page"
                         >
                             Home
-                        </a>
-                        <a
-                            href="/about"
-                            class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800"
+                        </x-nav-link>
+                        <x-nav-link
+                            href="/jobs"
+                            type="mobile"
+                            :active="request()->is('jobs')"
                         >
-                            About
-                        </a>
-                        <a
+                            Jobs
+                        </x-nav-link>
+                        <x-nav-link
                             href="/contact"
-                            class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800"
+                            type="mobile"
+                            :active="request()->is('contact')"
                         >
                             Contact
-                        </a>
+                        </x-nav-link>
                     </div>
                     <div class="border-t border-gray-200 pb-3 pt-4">
                         <div class="flex items-center px-4">
