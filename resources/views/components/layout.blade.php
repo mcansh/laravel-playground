@@ -29,10 +29,25 @@
                             <div
                                 class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8"
                             >
-                                <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
-                                <x-nav-link :active="request()->is('/')" href="/">Home</x-nav-link>
-                                <x-nav-link :active="request()->is('about')" href="/about">About</x-nav-link>
-                                <x-nav-link :active="request()->is('contact')" href="/contact">Contact</x-nav-link>
+                                {{-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" --}}
+                                <x-nav-link
+                                    :active="request()->is('/')"
+                                    href="/"
+                                >
+                                    Home
+                                </x-nav-link>
+                                <x-nav-link
+                                    :active="request()->is('about')"
+                                    href="/about"
+                                >
+                                    About
+                                </x-nav-link>
+                                <x-nav-link
+                                    :active="request()->is('contact')"
+                                    href="/contact"
+                                >
+                                    Contact
+                                </x-nav-link>
                             </div>
                         </div>
                         <div class="hidden sm:ml-6 sm:flex sm:items-center">
@@ -58,7 +73,7 @@
                                 </svg>
                             </button>
 
-                            <!-- Profile dropdown -->
+                            {{-- Profile dropdown --}}
                             <div class="relative ml-3">
                                 <div>
                                     <button
@@ -84,7 +99,7 @@
                             </div>
                         </div>
                         <div class="-mr-2 flex items-center sm:hidden">
-                            <!-- Mobile menu button -->
+                            {{-- Mobile menu button --}}
                             <button
                                 type="button"
                                 class="relative inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
@@ -93,7 +108,9 @@
                             >
                                 <span class="absolute -inset-0.5"></span>
                                 <span class="sr-only">Open main menu</span>
-                                <!-- Menu open: "hidden", Menu closed: "block" -->
+                                {{--
+                                    Menu open: "hidden", Menu closed: "block"
+                                --}}
                                 <svg
                                     class="block h-6 w-6"
                                     fill="none"
@@ -108,7 +125,9 @@
                                         d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
                                     />
                                 </svg>
-                                <!-- Menu open: "block", Menu closed: "hidden" -->
+                                {{--
+                                    Menu open: "block", Menu closed: "hidden"
+                                --}}
                                 <svg
                                     class="hidden h-6 w-6"
                                     fill="none"
@@ -128,10 +147,15 @@
                     </div>
                 </div>
 
-                <!-- Mobile menu, show/hide based on menu state. -->
+                {{-- Mobile menu, show/hide based on menu state. --}}
                 <div class="sm:hidden" id="mobile-menu">
                     <div class="space-y-1 pb-3 pt-2">
-                        <!-- Current: "border-indigo-500 bg-indigo-50 text-indigo-700", Default: "border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800" -->
+                        {{--
+                            Current: "border-indigo-500 bg-indigo-50
+                            text-indigo-700", Default: "border-transparent
+                            text-gray-600 hover:border-gray-300 hover:bg-gray-50
+                            hover:text-gray-800"
+                        --}}
                         <a
                             href="#"
                             class="block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700"
@@ -209,7 +233,7 @@
                 </header>
                 <main>
                     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                        <!-- Your content -->
+                        {{-- Your content --}}
                         {{ $slot }}
                     </div>
                 </main>
