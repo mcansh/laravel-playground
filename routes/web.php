@@ -13,6 +13,19 @@ Route::get('/jobs', function () {
     ]);
 });
 
+Route::get('/jobs/create', function () {
+    return view('job-create');
+});
+
+Route::post('/jobs/create', function () {
+    $job = new Job();
+    $job->position = request('position');
+    $job
+        ->fill(request()->only(['position', 'location', 'salary', 'company']))
+        ->save();
+    return redirect('/jobs');
+});
+
 Route::get('/jobs/{id}', function ($id) {
     $job = Job::find($id);
     if (!$job) abort(404);
