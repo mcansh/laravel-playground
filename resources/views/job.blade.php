@@ -2,7 +2,9 @@
     <x-slot:heading>Job Listing</x-slot>
 
     <div class="space-y-2 pt-2">
-        <h2 class="text-lg font-bold">Position: {{ $job->position }}</h2>
-        <p>This position pays ${{ number_format($job->salary) }} per year.</p>
+        <h2 class="text-lg font-bold">Company: {{ $job->company }}</h2>
+        <h3>Position: {{ $job->position }}</h3>
+        <p>Location: {{ $job->location }}</p>
+        <p>Salary: ${{ number_format($job->salary) }}</p>
     </div>
 </x-layout>

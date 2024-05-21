@@ -5,10 +5,13 @@
         @foreach ($jobs as $job)
             <li>
                 <a href="/jobs/{{ $job->id }}" class="text-blue-500">
-                    <strong>
-                        {{ $job->position }}: Pays
-                        ${{ number_format($job->salary) }} per year.
-                    </strong>
+                    <strong>{{ $job->position }}</strong>
+                    <br />
+                    Company: {{ $job->company }}
+                    <br />
+                    Location: {{ $job->location }}
+                    <br />
+                    Salary: ${{ number_format($job->salary) }}
                 </a>
             </li>
         @endforeach
