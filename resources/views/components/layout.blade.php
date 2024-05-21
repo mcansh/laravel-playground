@@ -18,15 +18,15 @@
     </head>
     <body>
         <nav>
-            <a class="text-blue-700 hover:underline visited:text-indigo-600 active:text-red-600" href="/">Home</a>
-            <a class="text-blue-700 hover:underline visited:text-indigo-600 active:text-red-600" href="/about">About</a>
-            <a class="text-blue-700 hover:underline visited:text-indigo-600 active:text-red-600" href="/contact">Contact</a>
+            <x-nav-link href="/">Home</x-nav-link>
+            <x-nav-link href="/about">About</x-nav-link>
+            <x-nav-link href="/contact">Contact</x-nav-link>
         </nav>
         <div class="pt-4">
-        	{{-- long form --}}
-        	{{-- <?php echo $slot; ?> --}}
- 			{{-- short form --}}
-			{{ $slot }}
+            {{-- long form --}}
+            {{-- <?php echo $slot; ?> --}}
+            {{-- short form --}}
+            {{ $slot }}
         </div>
     </body>
 </html>
