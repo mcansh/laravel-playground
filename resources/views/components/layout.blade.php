@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace("_", "-", app()->getLocale()) }}">
+<html lang="{{ str_replace("_", "-", app()->getLocale()) }}" class="h-full">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,15 +8,7 @@
 
         @vite("resources/css/app.css")
     </head>
-    <body>
-        <!--
-      This example requires updating your template:
-
-      ```
-      <html class="h-full">
-      <body class="h-full">
-      ```
-    -->
+    <body class="h-full">
         <div class="min-h-full">
             <nav class="border-b border-gray-200 bg-white">
                 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -38,25 +30,9 @@
                                 class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8"
                             >
                                 <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
-                                <a
-                                    href="/"
-                                    class="inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900"
-                                    aria-current="page"
-                                >
-                                    Home
-                                </a>
-                                <a
-                                    href="/about"
-                                    class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                                >
-                                    About
-                                </a>
-                                <a
-                                    href="/contact"
-                                    class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                                >
-                                    Contact
-                                </a>
+                                <x-nav-link :active="request()->is('/')" href="/">Home</x-nav-link>
+                                <x-nav-link :active="request()->is('about')" href="/about">About</x-nav-link>
+                                <x-nav-link :active="request()->is('contact')" href="/contact">Contact</x-nav-link>
                             </div>
                         </div>
                         <div class="hidden sm:ml-6 sm:flex sm:items-center">
