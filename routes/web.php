@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Employer;
 use Illuminate\Support\Facades\Route;
 use App\Models\Job;
 use Mockery\Undefined;
@@ -87,4 +88,12 @@ Route::post("/jobs/{id}", function ($id) {
 
 Route::get("/contact", function () {
     return view("contact");
+});
+
+Route::get("/companies/{id}", function ($id) {
+    $employer = Employer::find($id);
+    if (!$employer) {
+        abort(404);
+    }
+    return view("employers/view", ["employer" => $employer]);
 });
