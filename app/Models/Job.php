@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Number;
 
@@ -9,11 +10,20 @@ class Job extends Model
 {
     protected $table = "job_listings";
 
+    use HasFactory;
+
     protected $fillable = ["position", "location", "salary", "company"];
 
     protected $casts = [
         "salary" => "integer",
     ];
+
+    // when saving the salary attribute, we will convert it to cent and remove the comma and dollar sign
+    public function setSalaryAttribute($value)
+    {
+        $this->attributes["salary"] =
+            (int) str_replace([",", "$"], "", $value) * 100;
+    }
 
     // salary attribute accessor
     // this is a laravel accessor that will format the salary attribute
