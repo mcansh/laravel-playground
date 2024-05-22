@@ -6,7 +6,5 @@ vendor/
 public/
 .git
 **/.git
-package-lock.json
-composer.lock
 storage/framework/
 /storage/framework
