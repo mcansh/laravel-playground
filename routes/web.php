@@ -8,13 +8,11 @@ Route::get('/', function () {
 });
 
 Route::get('/jobs', function () {
-    return view('jobs', [
-        'jobs' => Job::all()
-    ]);
+    return view('jobs/listings', ['jobs' => Job::all()]);
 });
 
 Route::get('/jobs/create', function () {
-    return view('job-create');
+    return view('jobs/create');
 });
 
 Route::post('/jobs/create', function () {
@@ -29,7 +27,7 @@ Route::post('/jobs/create', function () {
 Route::get('/jobs/{id}/edit', function ($id) {
     $job = Job::find($id);
     if (!$job) abort(404);
-    return view('job-edit', ['job' => $job]);
+    return view('jobs/edit', ['job' => $job]);
 });
 
 Route::post('/jobs/{id}/edit', function ($id) {
@@ -44,7 +42,7 @@ Route::post('/jobs/{id}/edit', function ($id) {
 Route::get('/jobs/{id}', function ($id) {
     $job = Job::find($id);
     if (!$job) abort(404);
-    return view('job', ['job' => $job]);
+    return view('jobs/listing', ['job' => $job]);
 });
 
 Route::get('/contact', function () {
