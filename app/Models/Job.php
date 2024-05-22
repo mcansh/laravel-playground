@@ -13,4 +13,8 @@ class Job extends Model {
         'salary',
         'company',
     ];
+
+    protected $casts = [
+        'salary' => 'integer',
+    ];
 }
