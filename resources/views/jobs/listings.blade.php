@@ -14,7 +14,7 @@
                 <strong>{{ $job->position }}</strong>
                 <p>Company: {{ $job->company }}</p>
                 <p>Location: {{ $job->location }}</p>
-                <p>Salary: {{ Number::currency($job->salary) }}</p>
+                <p>Salary: {{ $job->salary }}</p>
                 <a href="/jobs/{{ $job->id }}" class="text-blue-500">
                     View
                     <span aria-hidden="true">&rarr;</span>

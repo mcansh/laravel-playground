@@ -5,7 +5,7 @@
         <h2 class="text-lg font-bold">Company: {{ $job->company }}</h2>
         <h3>Position: {{ $job->position }}</h3>
         <p>Location: {{ $job->location }}</p>
-        <p>Salary: {{ Number::currency($job->salary) }}</p>
+        <p>Salary: {{ $job->salary }}</p>
 
         <a
             href="/jobs/{{ $job->id }}/edit"
