@@ -2,13 +2,39 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Job;
+use Mockery\Undefined;
 
 Route::get("/", function () {
     return view("home");
 });
 
 Route::get("/jobs", function () {
-    return view("jobs/listings", ["jobs" => Job::all()]);
+    $count = Job::count();
+    $pageParam = request("page");
+    $page = is_numeric($pageParam) ? (int) $pageParam : null;
+    $perPage = 10;
+    // determine if there are more pages
+    $hasMore = $count > $page * $perPage;
+
+    if ($page == 1) {
+        return redirect("/jobs");
+    }
+
+    $page ??= 1;
+
+    if ($page > ceil($count / $perPage)) {
+        return redirect("/jobs");
+    }
+
+    $jobs = Job::skip(($page - 1) * $perPage)
+        ->take($perPage)
+        ->get();
+
+    return view("jobs/listings", [
+        "jobs" => $jobs,
+        "page" => $page,
+        "hasMore" => $hasMore,
+    ]);
 });
 
 Route::get("/jobs/create", function () {

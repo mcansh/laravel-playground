@@ -22,4 +22,24 @@
             </li>
         @endforeach
     </ul>
+
+    <div class="mt-6">
+        @if ($page > 1)
+            <a
+                href="/jobs?page={{ $page - 1 }}"
+                class="inline-block rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
+            >
+                Previous
+            </a>
+        @endif
+
+        @if ($hasMore)
+            <a
+                class="inline-block rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
+                href="/jobs?page={{ $page + 1 }}"
+            >
+                Next
+            </a>
+        @endif
+    </div>
 </x-layout>
