@@ -7,11 +7,23 @@
         <p>Location: {{ $job->location }}</p>
         <p>Salary: {{ $job->salary }}</p>
 
-        <a
-            href="/jobs/{{ $job->id }}/edit"
-            class="mt-6 inline-block rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
-        >
-            Edit
-        </a>
+        <div class="flex space-x-2 pt-6">
+            <a
+                href="/jobs/{{ $job->id }}/edit"
+                class="block rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
+            >
+                Edit
+            </a>
+
+            <form method="POST">
+                @csrf
+                <button
+                    type="submit"
+                    class="block rounded bg-red-500 px-4 py-2 text-white transition duration-200 hover:bg-red-700"
+                >
+                    Delete
+                </button>
+            </form>
+        </div>
     </div>
 </x-layout>

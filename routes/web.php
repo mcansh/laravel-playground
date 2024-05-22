@@ -17,7 +17,6 @@ Route::get("/jobs/create", function () {
 
 Route::post("/jobs/create", function () {
     $job = new Job();
-    $job->position = request("position");
     $job->fill(
         request()->only(["position", "location", "salary", "company"]),
     )->save();
@@ -49,6 +48,15 @@ Route::get("/jobs/{id}", function ($id) {
         abort(404);
     }
     return view("jobs/listing", ["job" => $job]);
+});
+
+Route::post("/jobs/{id}", function ($id) {
+    $job = Job::find($id);
+    if (!$job) {
+        abort(404);
+    }
+    $job->delete();
+    return redirect("/jobs");
 });
 
 Route::get("/contact", function () {
