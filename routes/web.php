@@ -3,7 +3,7 @@
 use App\Models\Employer;
 use Illuminate\Support\Facades\Route;
 use App\Models\Job;
-use Mockery\Undefined;
+use App\Models\Tag;
 
 Route::get("/", function () {
     return view("home");
@@ -96,4 +96,12 @@ Route::get("/companies/{id}", function ($id) {
         abort(404);
     }
     return view("employers/view", ["employer" => $employer]);
+});
+
+Route::get("/tags/{id}", function ($id) {
+    $tag = Tag::find($id);
+    if (!$tag) {
+        abort(404);
+    }
+    return view("tags/view", ["tag" => $tag]);
 });
