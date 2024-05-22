@@ -4,17 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Job extends Model {
-    protected $table = 'job_listings';
+class Job extends Model
+{
+    protected $table = "job_listings";
 
-    protected $fillable = [
-        'position',
-        'location',
-        'salary',
-        'company',
-    ];
+    protected $fillable = ["position", "location", "salary", "company"];
 
     protected $casts = [
-        'salary' => 'integer',
+        "salary" => "integer",
     ];
 }

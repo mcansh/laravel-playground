@@ -1,6 +1,11 @@
 /** @type {import('prettier').Config} */
 export default {
-    plugins: ["prettier-plugin-blade", "prettier-plugin-tailwindcss"],
+    phpVersion: "8.2",
+    plugins: [
+        "prettier-plugin-blade",
+        "prettier-plugin-tailwindcss",
+        "@prettier/plugin-php",
+    ],
     overrides: [
         {
             files: ["*.blade.php"],
