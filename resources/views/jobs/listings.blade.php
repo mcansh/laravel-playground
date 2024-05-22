@@ -3,7 +3,7 @@
 
     <a
         href="/jobs/create"
-        class="mt-2 inline-block rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
+        class="inline-block rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
     >
         Create New Job Listing
     </a>

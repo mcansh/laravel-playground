@@ -236,7 +236,7 @@
                     </div>
                 </header>
                 <main>
-                    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                    <div class="mx-auto max-w-7xl pt-6 sm:px-6 lg:px-8">
                         {{-- Your content --}}
                         {{ $slot }}
                     </div>

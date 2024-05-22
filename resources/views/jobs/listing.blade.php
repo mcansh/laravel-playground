@@ -9,7 +9,7 @@
 
         <a
             href="/jobs/{{ $job->id }}/edit"
-            class="mt-4 inline-block rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
+            class="mt-6 inline-block rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
         >
             Edit
         </a>
