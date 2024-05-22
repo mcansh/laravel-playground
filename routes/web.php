@@ -26,6 +26,21 @@ Route::post('/jobs/create', function () {
     return redirect('/jobs');
 });
 
+Route::get('/jobs/{id}/edit', function ($id) {
+    $job = Job::find($id);
+    if (!$job) abort(404);
+    return view('job-edit', ['job' => $job]);
+});
+
+Route::post('/jobs/{id}/edit', function ($id) {
+    $job = Job::find($id);
+    if (!$job) abort(404);
+    $job
+        ->fill(request()->only(['position', 'location', 'salary', 'company']))
+        ->save();
+    return redirect('/jobs');
+});
+
 Route::get('/jobs/{id}', function ($id) {
     $job = Job::find($id);
     if (!$job) abort(404);
