@@ -12,7 +12,16 @@
         @foreach ($jobs as $job)
             <li>
                 <strong>{{ $job->position }}</strong>
-                <p>Company: {{ $job->company }}</p>
+                <p>
+                    Company:
+                    <a
+                        class="text-indigo-600"
+                        href="/companies/{{ $job->employer->id }}"
+                    >
+                        {{ $job->employer->name }}
+                    </a>
+                </p>
+
                 <p>Location: {{ $job->location }}</p>
                 <p>Salary: {{ $job->salary }}</p>
                 <a href="/jobs/{{ $job->id }}" class="text-blue-500">

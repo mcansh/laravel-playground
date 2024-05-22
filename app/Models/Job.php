@@ -12,7 +12,7 @@ class Job extends Model
 
     use HasFactory;
 
-    protected $fillable = ["position", "location", "salary", "company"];
+    protected $fillable = ["position", "location", "salary"];
 
     protected $casts = [
         "salary" => "integer",
@@ -32,5 +32,10 @@ class Job extends Model
     public function getSalaryAttribute($value)
     {
         return Number::currency($value / 100);
+    }
+
+    public function employer()
+    {
+        return $this->belongsTo(Employer::class);
     }
 }

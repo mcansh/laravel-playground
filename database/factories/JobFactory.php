@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Employer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,7 +21,7 @@ class JobFactory extends Factory
             "position" => $this->faker->jobTitle(),
             "location" => $this->faker->city(),
             "salary" => $this->faker->numberBetween(30000, 100000, 1000),
-            "company" => $this->faker->company(),
+            "employer_id" => Employer::factory(),
         ];
     }
 }
