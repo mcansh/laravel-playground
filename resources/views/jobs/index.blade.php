@@ -54,7 +54,7 @@
             </a>
         @endif
 
-        @if ($hasMore)
+        @if ($jobs->hasMorePages())
             <a
                 class="inline-block rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
                 href="{{ route("jobs.index", ["page" => $page + 1, "search" => $search]) }}"

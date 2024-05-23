@@ -17,18 +17,6 @@ class JobController extends Controller
         {
             return array_filter(request()->except($params));
         }
-
-        function pagination(int $count, int $page, int $perPage)
-        {
-            $hasMore = $count > $page * $perPage;
-            if ($page > ceil($count / $perPage)) {
-                // redirect removing only the page query parameter, keeping the others
-                return redirect()->route("jobs.index", dropQueryParams("page"));
-            }
-
-            return $hasMore;
-        }
-
         $search = request("search");
         $pageParam = request("page");
         $page = is_numeric($pageParam) ? (int) $pageParam : null;
@@ -44,7 +32,7 @@ class JobController extends Controller
             // find jobs that match the search query
             // by position, or related employer name,
             // or related tag name
-            $matches = Job::where("position", "like", "%$search%")
+            $jobs = Job::where("position", "like", "%$search%")
                 ->where("position", "like", "%$search%")
                 ->orWhereHas("employer", function ($query) use ($search) {
                     $query->where("name", "like", "%$search%");
@@ -52,15 +40,12 @@ class JobController extends Controller
                 ->orWhereHas("tags", function ($query) use ($search) {
                     $query->where("name", "like", "%$search%");
                 })
-                ->get();
-
-            $jobs = $matches->skip(($page - 1) * $perPage)->take($perPage);
+                ->paginate($perPage);
 
             return view("jobs/index", [
                 "jobs" => $jobs,
                 "search" => $search,
                 "page" => $page,
-                "hasMore" => pagination($matches->count(), $page, $perPage),
             ]);
         }
 
@@ -70,14 +55,11 @@ class JobController extends Controller
             return redirect()->route("jobs.index", dropQueryParams("page"));
         }
 
-        $jobs = Job::skip(($page - 1) * $perPage)
-            ->take($perPage)
-            ->get();
+        $jobs = Job::paginate($perPage);
 
         return view("jobs/index", [
             "jobs" => $jobs,
             "page" => $page,
-            "hasMore" => pagination($count, $page, $perPage),
             "search" => request("search"),
         ]);
     }
