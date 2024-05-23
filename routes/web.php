@@ -13,7 +13,4 @@ Route::resource("/jobs", JobController::class);
 
 Route::resource("/employers", EmployerController::class);
 
-Route::controller(TagController::class)->group(function () {
-    Route::get("/tags", "index")->name("tags.index");
-    Route::get("/tags/{tag}", "show")->name("tags.show");
-});
+Route::resource("/tags", TagController::class)->only(["index", "show"]);
