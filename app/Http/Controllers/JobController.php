@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employer;
 use App\Models\Job;
 use Illuminate\Http\Request;
 
@@ -46,19 +47,38 @@ class JobController extends Controller
      */
     public function create()
     {
+        $employerId = request("employer");
+        if ($employerId) {
+            $employer = Employer::find($employerId);
+            if (!$employer) {
+                return redirect()->route("employers.index");
+            }
+        }
+
         return view("jobs/create");
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
-        $job = new Job();
-        $job->fill(
-            request()->only(["position", "location", "salary", "company"]),
-        )->save();
-        return redirect()->route("jobs.index");
+        if (request("employer_id")) {
+            $employer = Employer::find(request("employer_id"));
+        } else {
+            $employer = Employer::firstOrCreate([
+                "name" => request("employer"),
+            ]);
+        }
+
+        $job = Job::create([
+            "position" => request("position"),
+            "location" => request("location"),
+            "salary" => request("salary"),
+            "employer_id" => $employer->id,
+        ]);
+
+        return redirect()->route("jobs.show", ["job" => $job]);
     }
 
     /**
@@ -82,9 +102,15 @@ class JobController extends Controller
      */
     public function update(Request $request, Job $job)
     {
-        $job->fill(
-            request()->only(["position", "location", "salary", "company"]),
-        )->save();
+        $employer = Employer::firstOrCreate(["name" => $request("employer")]);
+
+        $job->update([
+            "position" => $request("position"),
+            "location" => $request("location"),
+            "salary" => $request("salary"),
+            "employer_id" => $employer->id,
+        ]);
+
         return redirect()->route("jobs.index");
     }
 

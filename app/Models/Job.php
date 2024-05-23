@@ -12,7 +12,7 @@ class Job extends Model
 
     use HasFactory;
 
-    protected $fillable = ["position", "location", "salary"];
+    protected $fillable = ["position", "location", "salary", "employer_id"];
 
     protected $casts = [
         "salary" => "integer",

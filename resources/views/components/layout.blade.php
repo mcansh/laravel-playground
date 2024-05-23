@@ -50,6 +50,13 @@
                                     Jobs
                                 </x-nav-link>
                                 <x-nav-link
+                                    :active="request()->is('employers')"
+                                    href="/employers"
+                                    type="desktop"
+                                >
+                                    Employers
+                                </x-nav-link>
+                                <x-nav-link
                                     :active="request()->is('contact')"
                                     href="/contact"
                                     type="desktop"

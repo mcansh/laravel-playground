@@ -3,10 +3,10 @@
 
     <div class="space-y-2 pt-2">
         <h2 class="text-lg font-bold">
-            Company:
+            Employer:
             <a
                 class="text-indigo-600"
-                href="/companies/{{ $job->employer->id }}"
+                href="/employers/{{ $job->employer->id }}"
             >
                 {{ $job->employer->name }}
             </a>
@@ -37,8 +37,9 @@
                 Edit
             </a>
 
-            <form method="POST">
+            <form method="POST" action="{{ route("jobs.destroy", $job) }}">
                 @csrf
+                @method("DELETE")
                 <button
                     type="submit"
                     class="block rounded bg-red-500 px-4 py-2 text-white transition duration-200 hover:bg-red-700"

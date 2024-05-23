@@ -12,7 +12,10 @@ Route::get("/contact", fn() => view("contact"));
 Route::resource("/jobs", JobController::class);
 
 Route::controller(EmployerController::class)->group(function () {
-    Route::get("/companies/{employer}", "show");
+    Route::get("/employers", "index");
+    Route::get("/employers/{employer}", "show");
+    Route::get("/employers/{employer}/edit", "edit");
+    Route::put("/employers/{employer}", "update");
 });
 
 Route::controller(TagController::class)->group(function () {

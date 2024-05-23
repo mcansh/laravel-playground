@@ -1,8 +1,13 @@
 <x-layout>
     <x-slot:heading>Edit Job Listing</x-slot>
 
-    <form method="POST" class="mt-2 flex flex-col space-y-2">
+    <form
+        method="POST"
+        class="mt-2 flex flex-col space-y-2"
+        action="{{ route("jobs.update", $job) }}"
+    >
         @csrf
+        @method("PATCH")
         <label>
             <span class="block">Position</span>
             <input
@@ -35,12 +40,12 @@
         </label>
 
         <label>
-            <span class="block">Company</span>
+            <span class="block">Employer</span>
             <input
                 class="w-full rounded"
                 type="text"
-                name="company"
-                value="{{ $job->company }}"
+                name="employer"
+                value="{{ $job->employer->name }}"
             />
         </label>
 
