@@ -56,7 +56,7 @@ class JobController extends Controller
 
             $jobs = $matches->skip(($page - 1) * $perPage)->take($perPage);
 
-            return view("jobs/listings", [
+            return view("jobs/index", [
                 "jobs" => $jobs,
                 "search" => $search,
                 "page" => $page,
@@ -74,7 +74,7 @@ class JobController extends Controller
             ->take($perPage)
             ->get();
 
-        return view("jobs/listings", [
+        return view("jobs/index", [
             "jobs" => $jobs,
             "page" => $page,
             "hasMore" => pagination($count, $page, $perPage),
@@ -126,7 +126,7 @@ class JobController extends Controller
      */
     public function show(Job $job)
     {
-        return view("jobs/listing", ["job" => $job]);
+        return view("jobs/show", ["job" => $job]);
     }
 
     /**
