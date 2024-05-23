@@ -4,14 +4,14 @@
         <code>{{ $tag->name }}</code>
     </x-slot>
 
-    <form method="POST" action="{{ route('tags.update', $tag) }}">
-        @csrf
-        @method('PUT')
+    <div class="space-y-6 pt-6">
+        <form method="POST" action="{{ route("tags.update", $tag) }}">
+            @csrf
+            @method("PUT")
 
-        <input type="text" name="name" value="{{ $tag->name }}">
+            <input type="text" name="name" value="{{ $tag->name }}" />
 
-
-        <x-button as="button">
-            Save
-        </x-button>
+            <x-button as="button">Save</x-button>
+        </form>
+    </div>
 </x-layout>
