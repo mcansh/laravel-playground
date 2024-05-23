@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employer;
 use App\Models\Job;
-use Illuminate\Http\Request;
+use App\Helpers\SharedHelper;
 
 class JobController extends Controller
 {
@@ -13,17 +13,16 @@ class JobController extends Controller
      */
     public function index()
     {
-        function dropQueryParams($params)
-        {
-            return array_filter(request()->except($params));
-        }
         $search = request("search");
         $pageParam = request("page");
         $page = is_numeric($pageParam) ? (int) $pageParam : null;
         $perPage = 10;
 
         if ($page == 1) {
-            return redirect()->route("jobs.index", dropQueryParams("page"));
+            return redirect()->route(
+                "jobs.index",
+                SharedHelper::dropQueryParams("page"),
+            );
         }
 
         $page ??= 1;
@@ -52,7 +51,10 @@ class JobController extends Controller
         $count = Job::count();
 
         if ($page > ceil($count / $perPage)) {
-            return redirect()->route("jobs.index", dropQueryParams("page"));
+            return redirect()->route(
+                "jobs.index",
+                SharedHelper::dropQueryParams("page"),
+            );
         }
 
         $jobs = Job::paginate($perPage);
