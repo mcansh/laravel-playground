@@ -11,12 +11,7 @@ Route::get("/contact", fn() => view("contact"));
 
 Route::resource("/jobs", JobController::class);
 
-Route::controller(EmployerController::class)->group(function () {
-    Route::get("/employers", "index")->name("employers.index");
-    Route::get("/employers/{employer}", "show")->name("employers.show");
-    Route::get("/employers/{employer}/edit", "edit")->name("employers.edit");
-    Route::put("/employers/{employer}", "update")->name("employers.update");
-});
+Route::resource("/employers", EmployerController::class);
 
 Route::controller(TagController::class)->group(function () {
     Route::get("/tags", "index")->name("tags.index");
