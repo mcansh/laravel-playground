@@ -21,7 +21,10 @@ class JobController extends Controller
             // find jobs that match the search query
             // by position, or related employer name,
             // or related tag name
-            $jobs = Job::where("position", "like", "%$search%")
+            // TODO: use full-text search
+            /** @var LengthAwarePaginator */
+            $paginate = Job::with("employer")
+                ->where("position", "like", "%$search%")
                 ->where("position", "like", "%$search%")
                 ->orWhereHas("employer", function ($query) use ($search) {
                     $query->where("name", "like", "%$search%");
@@ -29,10 +32,13 @@ class JobController extends Controller
                 ->orWhereHas("tags", function ($query) use ($search) {
                     $query->where("name", "like", "%$search%");
                 })
-                ->paginate($perPage)
-                ->withQueryString();
+                ->paginate($perPage);
+
+            $jobs = $paginate->withQueryString();
         } else {
-            $jobs = Job::paginate($perPage)->withQueryString();
+            /** @var LengthAwarePaginator */
+            $paginate = Job::with("employer")->paginate($perPage);
+            $jobs = $paginate->withQueryString();
         }
 
         // if the page number is greater than the last page number,
