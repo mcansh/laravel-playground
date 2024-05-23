@@ -77,13 +77,7 @@ class JobController extends Controller
             $employer = Employer::firstOrCreate(["name" => $request->employer]);
         }
 
-        $tagNames = array_map("trim", explode(",", $request->tags));
-        $tags = [];
-
-        foreach ($tagNames as $tag) {
-            $tag = Tag::firstOrCreate(["name" => $tag]);
-            $tags[] = $tag->id;
-        }
+        $tags = self::getTags($request->tags);
 
         $job = Job::create([
             "position" => $request->position,
@@ -120,14 +114,7 @@ class JobController extends Controller
     public function update(Request $request, Job $job)
     {
         $employer = Employer::firstOrCreate(["name" => $request->employer]);
-        $tagNames = array_map("trim", explode(",", $request->tags));
-        $tags = [];
-
-        foreach ($tagNames as $tag) {
-            $tag = Tag::firstOrCreate(["name" => $tag]);
-            $tags[] = $tag->id;
-        }
-
+        $tags = self::getTags($request->tags);
         // update the job tags
         $job->tags()->sync($tags);
 
@@ -148,5 +135,21 @@ class JobController extends Controller
     {
         $job->delete();
         return redirect()->route("jobs.index");
+    }
+
+    protected function getTags(string $tags)
+    {
+        $tagNames = array_map(
+            fn($tag) => str_replace(" ", "_", strtolower(trim($tag))),
+            explode(",", $tags),
+        );
+        $tags = [];
+
+        foreach ($tagNames as $tag) {
+            $tag = Tag::firstOrCreate(["name" => $tag]);
+            $tags[] = $tag->id;
+        }
+
+        return $tags;
     }
 }
