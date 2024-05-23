@@ -1,12 +1,24 @@
 <x-layout>
     <x-slot:heading>Job Listings</x-slot>
 
-    <a
-        href="/jobs/create"
-        class="inline-block rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
-    >
-        Create New Job Listing
-    </a>
+    <div class="flex items-center justify-between">
+        <form method="GET">
+            <input
+                type="search"
+                name="search"
+                placeholder="Search for a job"
+                class="rounded border border-gray-200 px-4 py-2"
+                value="{{ $search }}"
+            />
+        </form>
+
+        <a
+            href="/jobs/create"
+            class="inline-block rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
+        >
+            Create New Job Listing
+        </a>
+    </div>
 
     <ul class="list-disc space-y-2 pl-4 pt-6">
         @foreach ($jobs as $job)
@@ -35,8 +47,13 @@
     <div class="mt-6">
         @if ($page > 1)
             <a
-                href="/jobs?page={{ $page - 1 }}"
                 class="inline-block rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
+                href="{{
+                    route("jobs.index", [
+                        "page" => $page - 1,
+                        "search" => $search,
+                    ])
+                }}"
             >
                 Previous
             </a>
@@ -45,7 +62,12 @@
         @if ($hasMore)
             <a
                 class="inline-block rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
-                href="/jobs?page={{ $page + 1 }}"
+                href="{{
+                    route("jobs.index", [
+                        "page" => $page + 1,
+                        "search" => $search,
+                    ])
+                }}"
             >
                 Next
             </a>

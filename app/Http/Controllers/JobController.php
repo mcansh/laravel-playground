@@ -13,21 +13,61 @@ class JobController extends Controller
      */
     public function index()
     {
-        $count = Job::count();
+        function dropQueryParams($params)
+        {
+            return array_filter(request()->except($params));
+        }
+
+        function pagination(int $count, int $page, int $perPage)
+        {
+            $hasMore = $count > $page * $perPage;
+            if ($page > ceil($count / $perPage)) {
+                // redirect removing only the page query parameter, keeping the others
+                return redirect()->route("jobs.index", dropQueryParams("page"));
+            }
+
+            return $hasMore;
+        }
+
+        $search = request("search");
         $pageParam = request("page");
         $page = is_numeric($pageParam) ? (int) $pageParam : null;
         $perPage = 10;
-        // determine if there are more pages
-        $hasMore = $count > $page * $perPage;
 
         if ($page == 1) {
-            return redirect()->route("jobs.index");
+            return redirect()->route("jobs.index", dropQueryParams("page"));
         }
 
         $page ??= 1;
 
+        if ($search) {
+            // find jobs that match the search query
+            // by position, or related employer name,
+            // or related tag name
+            $matches = Job::where("position", "like", "%$search%")
+                ->where("position", "like", "%$search%")
+                ->orWhereHas("employer", function ($query) use ($search) {
+                    $query->where("name", "like", "%$search%");
+                })
+                ->orWhereHas("tags", function ($query) use ($search) {
+                    $query->where("name", "like", "%$search%");
+                })
+                ->get();
+
+            $jobs = $matches->skip(($page - 1) * $perPage)->take($perPage);
+
+            return view("jobs/listings", [
+                "jobs" => $jobs,
+                "search" => $search,
+                "page" => $page,
+                "hasMore" => pagination($matches->count(), $page, $perPage),
+            ]);
+        }
+
+        $count = Job::count();
+
         if ($page > ceil($count / $perPage)) {
-            return redirect()->route("jobs.index");
+            return redirect()->route("jobs.index", dropQueryParams("page"));
         }
 
         $jobs = Job::skip(($page - 1) * $perPage)
@@ -37,7 +77,7 @@ class JobController extends Controller
         return view("jobs/listings", [
             "jobs" => $jobs,
             "page" => $page,
-            "hasMore" => $hasMore,
+            "hasMore" => pagination($count, $page, $perPage),
             "search" => request("search"),
         ]);
     }
