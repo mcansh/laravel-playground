@@ -16,7 +16,7 @@
                     Company:
                     <a
                         class="text-indigo-600"
-                        href="/companies/{{ $job->employer->id }}"
+                        href="/employers/{{ $job->employer->id }}"
                     >
                         {{ $job->employer->name }}
                     </a>
