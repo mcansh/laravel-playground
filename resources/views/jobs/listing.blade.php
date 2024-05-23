@@ -40,12 +40,9 @@
             <form method="POST" action="{{ route("jobs.destroy", $job) }}">
                 @csrf
                 @method("DELETE")
-                <button
-                    type="submit"
-                    class="block rounded bg-red-500 px-4 py-2 text-white transition duration-200 hover:bg-red-700"
-                >
+                <x-button as="button" type="submit" variant="destroy">
                     Delete
-                </button>
+                </x-button>
             </form>
         </div>
     </div>
