@@ -8,7 +8,7 @@
                 name="search"
                 placeholder="Search for a job"
                 class="rounded border border-gray-200 px-4 py-2"
-                value="{{ $search }}"
+                value="{{ request("search") }}"
             />
         </form>
 
@@ -44,23 +44,27 @@
         @endforeach
     </ul>
 
-    <div class="mt-6">
-        @if ($page > 1)
-            <a
-                class="inline-block rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
-                href="{{ route("jobs.index", ["page" => $page - 1, "search" => $search]) }}"
-            >
-                Previous
-            </a>
+    {{--
+        <div class="mt-6">
+        @if ($jobs->previousPageUrl())
+        <a
+        class="inline-block rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
+        href="{{ $jobs->previousPageUrl() }}"
+        >
+        Previous
+        </a>
         @endif
 
         @if ($jobs->hasMorePages())
-            <a
-                class="inline-block rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
-                href="{{ route("jobs.index", ["page" => $page + 1, "search" => $search]) }}"
-            >
-                Next
-            </a>
+        <a
+        class="inline-block rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
+        href="{{ $jobs->nextPageUrl() }}"
+        >
+        Next
+        </a>
         @endif
-    </div>
+        </div>
+    --}}
+
+    {{ $jobs->links() }}
 </x-layout>

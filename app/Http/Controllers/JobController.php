@@ -4,28 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Employer;
 use App\Models\Job;
-use App\Helpers\SharedHelper;
+use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $search = request("search");
-        $pageParam = request("page");
-        $page = is_numeric($pageParam) ? (int) $pageParam : null;
+        $search = $request->search;
         $perPage = 10;
-
-        if ($page == 1) {
-            return redirect()->route(
-                "jobs.index",
-                SharedHelper::dropQueryParams("page"),
-            );
-        }
-
-        $page ??= 1;
 
         if ($search) {
             // find jobs that match the search query
@@ -39,39 +28,33 @@ class JobController extends Controller
                 ->orWhereHas("tags", function ($query) use ($search) {
                     $query->where("name", "like", "%$search%");
                 })
-                ->paginate($perPage);
+                ->paginate($perPage)
+                ->withQueryString();
+        } else {
+            $jobs = Job::paginate($perPage)->withQueryString();
+        }
 
-            return view("jobs/index", [
-                "jobs" => $jobs,
-                "search" => $search,
-                "page" => $page,
+        // if the page number is greater than the last page number,
+        if ($jobs->currentPage() > $jobs->lastPage()) {
+            return redirect()->route("jobs.index", [
+                "page" => $jobs->lastPage(),
             ]);
         }
 
-        $count = Job::count();
-
-        if ($page > ceil($count / $perPage)) {
-            return redirect()->route(
-                "jobs.index",
-                SharedHelper::dropQueryParams("page"),
-            );
+        // if the page number is less than 1,
+        if ($jobs->currentPage() < 1) {
+            return redirect()->route("jobs.index", ["page" => null]);
         }
 
-        $jobs = Job::paginate($perPage);
-
-        return view("jobs/index", [
-            "jobs" => $jobs,
-            "page" => $page,
-            "search" => request("search"),
-        ]);
+        return view("jobs/index", ["jobs" => $jobs]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        $employerId = request("employer");
+        $employerId = $request->employer;
         if ($employerId) {
             $employer = Employer::find($employerId);
             if (!$employer) {
@@ -85,20 +68,18 @@ class JobController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store()
+    public function store(Request $request)
     {
         if (request("employer_id")) {
-            $employer = Employer::find(request("employer_id"));
+            $employer = Employer::find($request->employer_id);
         } else {
-            $employer = Employer::firstOrCreate([
-                "name" => request("employer"),
-            ]);
+            $employer = Employer::firstOrCreate(["name" => $request->employer]);
         }
 
         $job = Job::create([
-            "position" => request("position"),
-            "location" => request("location"),
-            "salary" => request("salary"),
+            "position" => $request->position,
+            "location" => $request->location,
+            "salary" => $request->salary,
             "employer_id" => $employer->id,
         ]);
 
@@ -124,14 +105,14 @@ class JobController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Job $job)
+    public function update(Request $request, Job $job)
     {
-        $employer = Employer::firstOrCreate(["name" => request("employer")]);
+        $employer = Employer::firstOrCreate(["name" => $request->employer]);
 
         $job->update([
-            "position" => request("position"),
-            "location" => request("location"),
-            "salary" => request("salary"),
+            "position" => $request->position,
+            "location" => $request->location,
+            "salary" => $request->salary,
             "employer_id" => $employer->id,
         ]);
 
