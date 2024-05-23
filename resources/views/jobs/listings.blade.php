@@ -13,7 +13,7 @@
         </form>
 
         <a
-            href="/jobs/create"
+            href="{{ route("jobs.create") }}"
             class="inline-block rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
         >
             Create New Job Listing
@@ -28,7 +28,7 @@
                     Company:
                     <a
                         class="text-indigo-600"
-                        href="/employers/{{ $job->employer->id }}"
+                        href="{{ route("employers.show", $job->employer) }}"
                     >
                         {{ $job->employer->name }}
                     </a>
@@ -36,7 +36,7 @@
 
                 <p>Location: {{ $job->location }}</p>
                 <p>Salary: {{ $job->salary }}</p>
-                <a href="/jobs/{{ $job->id }}" class="text-blue-500">
+                <a class="text-blue-500" href="{{ route("jobs.show", $job) }}">
                     View
                     <span aria-hidden="true">&rarr;</span>
                 </a>
@@ -48,12 +48,7 @@
         @if ($page > 1)
             <a
                 class="inline-block rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
-                href="{{
-                    route("jobs.index", [
-                        "page" => $page - 1,
-                        "search" => $search,
-                    ])
-                }}"
+                href="{{ route("jobs.index", ["page" => $page - 1, "search" => $search]) }}"
             >
                 Previous
             </a>
@@ -62,12 +57,7 @@
         @if ($hasMore)
             <a
                 class="inline-block rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
-                href="{{
-                    route("jobs.index", [
-                        "page" => $page + 1,
-                        "search" => $search,
-                    ])
-                }}"
+                href="{{ route("jobs.index", ["page" => $page + 1, "search" => $search]) }}"
             >
                 Next
             </a>

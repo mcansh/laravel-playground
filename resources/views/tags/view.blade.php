@@ -7,7 +7,7 @@
     <ul>
         @foreach ($tag->jobs as $job)
             <li>
-                <a href="/jobs/{{ $job->id }}">
+                <a href="{{ route("jobs.show", $job) }}">
                     {{ $job->position }}
                 </a>
             </li>

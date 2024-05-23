@@ -6,7 +6,7 @@
             Employer:
             <a
                 class="text-indigo-600"
-                href="/employers/{{ $job->employer->id }}"
+                href="{{ route("employers.show", $job->employer) }}"
             >
                 {{ $job->employer->name }}
             </a>
@@ -20,7 +20,7 @@
             @foreach ($job->tags as $tag)
                 <li>
                     <a
-                        href="/tags/{{ $tag->id }}"
+                        href="{{ route("tags.show", $tag) }}"
                         class="rounded-full bg-indigo-500 px-2 py-1 text-white"
                     >
                         {{ $tag->name }}
@@ -31,7 +31,7 @@
 
         <div class="flex space-x-2 pt-6">
             <a
-                href="/jobs/{{ $job->id }}/edit"
+                href="{{ route("jobs.edit", $job) }}"
                 class="block rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
             >
                 Edit

@@ -19,11 +19,6 @@
             />
         </label>
 
-        <button
-            class="rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
-            type="submit"
-        >
-            Update
-        </button>
+        <x-button as="button" type="submit">Update</x-button>
     </form>
 </x-layout>

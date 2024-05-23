@@ -4,7 +4,9 @@
     <ul>
 		@foreach ($employers as $employer)
 			<li>
-				<a href="/employers/{{ $employer->id }}">{{ $employer->name }} ({{$employer->jobs->count()}})</a>
+				<a href="{{ route('employers.show', $employer) }}">
+                    {{ $employer->name }} ({{$employer->jobs->count()}})
+                </a>
 			</li>
 		@endforeach
 </x-layout>
