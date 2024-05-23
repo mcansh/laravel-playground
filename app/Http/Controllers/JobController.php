@@ -122,18 +122,18 @@ class JobController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Job $job)
+    public function update(Job $job)
     {
-        $employer = Employer::firstOrCreate(["name" => $request("employer")]);
+        $employer = Employer::firstOrCreate(["name" => request("employer")]);
 
         $job->update([
-            "position" => $request("position"),
-            "location" => $request("location"),
-            "salary" => $request("salary"),
+            "position" => request("position"),
+            "location" => request("location"),
+            "salary" => request("salary"),
             "employer_id" => $employer->id,
         ]);
 
-        return redirect()->route("jobs.index");
+        return redirect()->route("jobs.show", ["job" => $job]);
     }
 
     /**
