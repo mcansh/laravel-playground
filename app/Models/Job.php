@@ -12,7 +12,21 @@ class Job extends Model
 
     use HasFactory;
 
-    protected $fillable = ["position", "location", "salary", "employer_id"];
+    protected $fillable = [
+        "position",
+        "location",
+        "salary",
+        "employer_id",
+        "tags",
+    ];
+
+    protected $validations = [
+        "position" => "required|string|max:255",
+        "location" => "required|string|max:255",
+        "salary" => "required|string|max:255",
+        "employer_id" => "required|integer|exists:employers,id",
+        "tags" => "nullable|string",
+    ];
 
     protected $casts = [
         "salary" => "integer",

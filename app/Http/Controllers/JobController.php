@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employer;
 use App\Models\Job;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
@@ -76,12 +77,23 @@ class JobController extends Controller
             $employer = Employer::firstOrCreate(["name" => $request->employer]);
         }
 
+        $tagNames = array_map("trim", explode(",", $request->tags));
+        $tags = [];
+
+        foreach ($tagNames as $tag) {
+            $tag = Tag::firstOrCreate(["name" => $tag]);
+            $tags[] = $tag->id;
+        }
+
         $job = Job::create([
             "position" => $request->position,
             "location" => $request->location,
             "salary" => $request->salary,
             "employer_id" => $employer->id,
         ]);
+
+        // create the job and attach the tags
+        $job->tags()->attach($tags);
 
         return redirect()->route("jobs.show", ["job" => $job]);
     }
@@ -108,6 +120,16 @@ class JobController extends Controller
     public function update(Request $request, Job $job)
     {
         $employer = Employer::firstOrCreate(["name" => $request->employer]);
+        $tagNames = array_map("trim", explode(",", $request->tags));
+        $tags = [];
+
+        foreach ($tagNames as $tag) {
+            $tag = Tag::firstOrCreate(["name" => $tag]);
+            $tags[] = $tag->id;
+        }
+
+        // update the job tags
+        $job->tags()->sync($tags);
 
         $job->update([
             "position" => $request->position,

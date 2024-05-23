@@ -49,6 +49,16 @@
             />
         </label>
 
+        <label>
+            <span class="block">Tags</span>
+            <input
+                class="w-full rounded"
+                type="text"
+                name="tags"
+                value="{{ $job->tags->pluck("name")->join(", ") }}"
+            />
+        </label>
+
         <x-button as="button" type="submit">Update</x-button>
     </form>
 </x-layout>
