@@ -18,12 +18,19 @@ class TagController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    // public function create()
+    public function create()
+    {
+        return view("tags/create");
+    }
 
     /**
      * Store a newly created resource in storage.
      */
-    // public function store()
+    public function store(Request $request)
+    {
+        Tag::create(["name" => $request->name]);
+        return redirect()->route("tags.index");
+    }
 
     /**
      * Display the specified resource.
@@ -44,10 +51,18 @@ class TagController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    // public function update(Request $request, Tag $tag)
+    public function update(Request $request, Tag $tag)
+    {
+        $tag->update(["name" => $request->name]);
+        return redirect()->route("tags.show", ["tag" => $tag]);
+    }
 
     /**
      * Remove the specified resource from storage.
      */
-    // public function destroy(Tag $tag)
+    public function destroy(Tag $tag)
+    {
+        $tag->delete();
+        return redirect()->route("tags.index");
+    }
 }

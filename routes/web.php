@@ -13,4 +13,9 @@ Route::resource("/jobs", JobController::class);
 
 Route::resource("/employers", EmployerController::class);
 
-Route::resource("/tags", TagController::class)->only(["index", "show"]);
+Route::resource("/tags", TagController::class)->only([
+    "index",
+    "show",
+    "edit",
+    "update",
+]);
