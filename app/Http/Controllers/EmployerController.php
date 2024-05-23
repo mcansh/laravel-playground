@@ -11,7 +11,9 @@ class EmployerController extends Controller
      */
     public function index()
     {
-        return view("employers/index", ["employers" => Employer::all()]);
+        return view("employers/index", [
+            "employers" => Employer::with("jobs")->get(),
+        ]);
     }
 
     /**
