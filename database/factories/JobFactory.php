@@ -19,7 +19,8 @@ class JobFactory extends Factory
     {
         return [
             "position" => $this->faker->jobTitle(),
-            "location" => $this->faker->city(),
+            "location" =>
+                $this->faker->city() . ", " . $this->faker->stateAbbr(),
             "salary" =>
                 ($this->faker->numberBetween(30000, 100000) / 1000) * 1000,
             "employer_id" => Employer::factory(),
