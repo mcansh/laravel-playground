@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // disable lazy loading
+        // disable lazy loading queries
         Model::preventLazyLoading();
     }
 }

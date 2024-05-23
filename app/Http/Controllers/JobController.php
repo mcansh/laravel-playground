@@ -41,16 +41,14 @@ class JobController extends Controller
             $jobs = $paginate->withQueryString();
         }
 
-        // if the page number is greater than the last page number,
-        if ($jobs->currentPage() > $jobs->lastPage()) {
-            return redirect()->route("jobs.index", [
-                "page" => $jobs->lastPage(),
-            ]);
+        // redirect if page number is too high
+        if ($paginate->currentPage() > $paginate->lastPage()) {
+            return redirect($paginate->url($paginate->lastPage()));
         }
 
-        // if the page number is less than 1,
-        if ($jobs->currentPage() < 1) {
-            return redirect()->route("jobs.index", ["page" => null]);
+        // redirect to first page if page number is less than 1
+        if ($paginate->currentPage() < 1) {
+            return redirect($paginate->url(1));
         }
 
         return view("jobs/index", ["jobs" => $jobs]);
