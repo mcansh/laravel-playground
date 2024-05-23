@@ -19,5 +19,6 @@ Route::controller(EmployerController::class)->group(function () {
 });
 
 Route::controller(TagController::class)->group(function () {
-    Route::get("/tags/{tag}", "show");
+    Route::get("/tags", "index")->name("tags.index");
+    Route::get("/tags/{tag}", "show")->name("tags.show");
 });
