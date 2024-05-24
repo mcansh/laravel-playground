@@ -25,7 +25,6 @@ class JobController extends Controller
             /** @var LengthAwarePaginator */
             $paginate = Job::with("employer")
                 ->where("position", "like", "%$search%")
-                ->where("position", "like", "%$search%")
                 ->orWhereHas("employer", function ($query) use ($search) {
                     $query->where("name", "like", "%$search%");
                 })
