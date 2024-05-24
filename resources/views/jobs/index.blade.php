@@ -1,25 +1,22 @@
 <x-layout>
     <x-slot:heading>Job Listings</x-slot>
+    <x-slot:action>
+        <x-button as="a" href="{{ route('jobs.create') }}">
+            <span class="hidden md:block">Create New Job Listing</span>
+            <span class="block md:hidden">Add New</span>
+        </x-button>
+    </x-slot>
 
     <div class="space-y-6 pt-6">
-        <div class="flex items-center justify-between">
-            <form method="GET">
-                <input
-                    type="search"
-                    name="search"
-                    placeholder="Search for a job"
-                    class="rounded border border-gray-200 px-4 py-2"
-                    value="{{ request("search") }}"
-                />
-            </form>
-
-            <a
-                href="{{ route("jobs.create") }}"
-                class="inline-block rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
-            >
-                Create New Job Listing
-            </a>
-        </div>
+        <form method="GET">
+            <input
+                type="search"
+                name="search"
+                placeholder="Search for a job"
+                class="w-full rounded border border-gray-200 px-4 py-2"
+                value="{{ request("search") }}"
+            />
+        </form>
 
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
             @foreach ($jobs as $job)
