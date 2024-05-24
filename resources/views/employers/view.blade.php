@@ -22,8 +22,18 @@
             </p>
         </div>
 
+        <form method="GET">
+            <input
+                type="search"
+                name="search"
+                placeholder="Search for an employer"
+                class="w-full rounded border border-gray-200 px-4 py-2"
+                value="{{ request("search") }}"
+            />
+        </form>
+
         <div class="grid grid-cols-4 gap-4">
-            @foreach ($employer->jobs as $job)
+            @foreach ($jobs as $job)
                 <div
                     class="rounded-lg bg-gray-50 shadow-sm ring-1 ring-gray-900/5"
                 >
