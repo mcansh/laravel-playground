@@ -11,6 +11,7 @@ export default {
             files: ["*.blade.php"],
             options: {
                 parser: "blade",
+                htmlWhitespaceSensitivity: "ignore",
             },
         },
     ],

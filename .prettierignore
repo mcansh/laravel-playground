@@ -8,3 +8,5 @@ public/
 **/.git
 storage/framework/
 /storage/framework
+/storage/debugbar
+storage/debugbar/

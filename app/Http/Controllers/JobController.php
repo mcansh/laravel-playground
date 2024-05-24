@@ -15,7 +15,7 @@ class JobController extends Controller
     public function index(Request $request)
     {
         $search = $request->search;
-        $perPage = 100;
+        $perPage = 48;
 
         if ($search) {
             // find jobs that match the search query
