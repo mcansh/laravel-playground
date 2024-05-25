@@ -5,15 +5,15 @@
     "placeholder" => "",
     "inputmode" => "text",
     "required" => false,
+    "disabled" => false,
     "id" => $name,
-    "errors" => $errors,
 ])
 
 <label class="w-full">
     <span class="block text-sm font-medium leading-6 text-gray-900">
         {{ $label }}
     </span>
-    <div class="mt-2">
+    <div class="relative mt-2">
         <input
             name="{{ $name }}"
             type="{{ $type }}"
@@ -23,6 +23,8 @@
                 "block w-full rounded-md border-0 py-1.5 ring-1 ring-1 ring-inset ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6",
                 "pr-10 text-red-900 ring-red-300 placeholder:text-red-300 focus:ring-red-500" => $errors->isNotEmpty(),
                 "text-gray-900 shadow-sm ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600" => $errors->isEmpty(),
+                "disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200" =>
+                    $attributes->get("disabled") ?? false,
             ])
             {{ $attributes }}
             @if ($placeholder) placeholder="{{ $placeholder }}" @endif
@@ -58,4 +60,10 @@
             </p>
         @endif
     </div>
+
+    @error($name)
+        <p class="mt-2 text-sm text-red-600" id="{{ $id }}-error">
+            {{ $message }}
+        </p>
+    @enderror
 </label>
