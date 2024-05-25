@@ -1,10 +1,10 @@
 <x-layout>
     <x-slot:heading>Edit Job Listing</x-slot>
 
-    <div class="space-y-6 pt-6">
+    <div class="pt-6">
         <form
             method="POST"
-            class="mt-2 flex flex-col space-y-2"
+            class="flex flex-col space-y-6"
             action="{{ route("jobs.update", $job) }}"
         >
             @csrf
@@ -24,7 +24,27 @@
                 required
             />
 
-            <x-button as="button" type="submit">Update</x-button>
+            <div class="flex space-x-2">
+                <x-button as="button" type="submit">Update</x-button>
+
+                <x-button
+                    as="button"
+                    variant="destroy"
+                    type="submit"
+                    form="destroy-job-form"
+                >
+                    Delete
+                </x-button>
+            </div>
+        </form>
+
+        <form
+            id="destroy-job-form"
+            method="POST"
+            action="{{ route("jobs.destroy", $job) }}"
+        >
+            @csrf
+            @method("DELETE")
         </form>
     </div>
 </x-layout>

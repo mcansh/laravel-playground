@@ -95,6 +95,6 @@ class EmployerController extends Controller
     public function update(Employer $employer)
     {
         $employer->update(request()->all());
-        return redirect()->route("employers.show", $employer);
+        return redirect(route("employers.show", $employer));
     }
 }

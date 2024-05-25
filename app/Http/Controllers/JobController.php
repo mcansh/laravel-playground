@@ -62,7 +62,7 @@ class JobController extends Controller
         if ($employerId) {
             $employer = Employer::find($employerId);
             if (!$employer) {
-                return redirect()->route("employers.index");
+                return redirect(route("employers.index"));
             }
         }
 
@@ -98,7 +98,7 @@ class JobController extends Controller
         // create the job and attach the tags
         // $job->tags()->attach($tags);
 
-        return redirect()->route("jobs.show", ["job" => $job]);
+        return redirect(route("jobs.show", ["job" => $job]));
     }
 
     /**
@@ -145,7 +145,7 @@ class JobController extends Controller
             "employer_id" => $employer ? $employer->id : $job->employer_id,
         ]);
 
-        return redirect()->route("jobs.show", ["job" => $job]);
+        return redirect(route("jobs.show", ["job" => $job]));
     }
 
     /**
@@ -154,7 +154,7 @@ class JobController extends Controller
     public function destroy(Job $job)
     {
         $job->delete();
-        return redirect()->route("jobs.index");
+        return redirect(route("jobs.index"));
     }
 
     protected function getTags(string $tags)

@@ -29,7 +29,7 @@ class TagController extends Controller
     public function store(Request $request)
     {
         Tag::create(["name" => $request->name]);
-        return redirect()->route("tags.index");
+        return redirect(route("tags.index"));
     }
 
     /**
@@ -54,7 +54,7 @@ class TagController extends Controller
     public function update(Request $request, Tag $tag)
     {
         $tag->update(["name" => $request->name]);
-        return redirect()->route("tags.show", ["tag" => $tag]);
+        return redirect(route("tags.show", ["tag" => $tag]));
     }
 
     /**
@@ -63,6 +63,6 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
         $tag->delete();
-        return redirect()->route("tags.index");
+        return redirect(route("tags.index"));
     }
 }
