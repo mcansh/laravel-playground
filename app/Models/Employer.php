@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Employer extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUlids;
 
     // we will allow all fields to be mass assignable
     // except for the ones that are defined in the guarded property
