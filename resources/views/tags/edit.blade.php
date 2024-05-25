@@ -9,7 +9,12 @@
             @csrf
             @method("PUT")
 
-            <input type="text" name="name" value="{{ $tag->name }}" />
+            <x-input
+                label="Name"
+                name="name"
+                value="{{ $tag->name }}"
+                required
+            />
 
             <x-button as="button">Save</x-button>
         </form>

@@ -9,13 +9,14 @@
 
     <div class="space-y-6 pt-6">
         <form method="GET">
-            <input
-                type="search"
-                name="search"
-                placeholder="Search for a job"
-                class="w-full rounded border border-gray-200 px-4 py-2"
-                value="{{ request("search") }}"
-            />
+            <div class="flex flex-wrap gap-4">
+                <x-input
+                    label="Search"
+                    name="search"
+                    placeholder="Search job listings"
+                    value="{{ request('search') }}"
+                />
+            </div>
         </form>
 
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">

@@ -23,12 +23,11 @@
         </div>
 
         <form method="GET">
-            <input
-                type="search"
+            <x-input
+                label="Search"
                 name="search"
-                placeholder="Search for an employer"
-                class="w-full rounded border border-gray-200 px-4 py-2"
-                value="{{ request("search") }}"
+                placeholder="Search job listings"
+                value="{{ request('search') }}"
             />
         </form>
 

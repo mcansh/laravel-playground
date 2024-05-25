@@ -10,15 +10,12 @@
             @csrf
             @method("PUT")
 
-            <label>
-                <span class="block">Name</span>
-                <input
-                    class="w-full rounded"
-                    type="text"
-                    name="name"
-                    value="{{ $employer->name }}"
-                />
-            </label>
+            <x-input
+                label="Name"
+                name="name"
+                value="{{ $employer->name }}"
+                required
+            />
 
             <x-button as="button" type="submit">Update</x-button>
         </form>

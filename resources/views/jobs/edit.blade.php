@@ -9,56 +9,26 @@
         >
             @csrf
             @method("PATCH")
-            <label>
-                <span class="block">Position</span>
-                <input
-                    class="w-full rounded"
-                    type="text"
-                    name="position"
-                    value="{{ $job->position }}"
-                />
-            </label>
+            <x-input
+                label="Position"
+                name="position"
+                value="{{ $job->position }}"
+                required
+            />
 
-            <label>
-                <span class="block">Location</span>
-                <input
-                    class="w-full rounded"
-                    type="text"
-                    name="location"
-                    value="{{ $job->location }}"
-                />
-            </label>
+            <x-input
+                label="Location"
+                name="location"
+                value="{{ $job->location }}"
+                required
+            />
 
-            <label>
-                <span class="block">Salary</span>
-                <input
-                    class="w-full rounded"
-                    type="text"
-                    name="salary"
-                    inputmode="numeric"
-                    value="{{ $job->salary }}"
-                />
-            </label>
-
-            <label>
-                <span class="block">Employer</span>
-                <input
-                    class="w-full rounded"
-                    type="text"
-                    name="employer"
-                    value="{{ $job->employer->name }}"
-                />
-            </label>
-
-            <label>
-                <span class="block">Tags</span>
-                <input
-                    class="w-full rounded"
-                    type="text"
-                    name="tags"
-                    value="{{ $job->tags->pluck("name")->join(", ") }}"
-                />
-            </label>
+            <x-input
+                label="Salary"
+                name="salary"
+                value="{{ $job->salary }}"
+                required
+            />
 
             <x-button as="button" type="submit">Update</x-button>
         </form>

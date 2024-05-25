@@ -1,5 +1,5 @@
 <x-layout>
-    <x-slot:heading>New Job Listing</x-slot>
+    <x-slot:heading>Create Job Listing</x-slot>
 
     <div class="space-y-6 pt-6">
         <form
@@ -8,29 +8,26 @@
             action="{{ route("jobs.store") }}"
         >
             @csrf
-            <input
-                class="rounded"
-                type="text"
+
+            <x-input
+                label="Position"
                 name="position"
-                placeholder="Title"
+                placeholder="Shift Leader"
+                required
             />
-            <input
-                class="rounded"
-                type="text"
+
+            <x-input
+                label="Location"
                 name="location"
-                placeholder="Location"
+                placeholder="Springfield, IL"
+                required
             />
-            <input
-                class="rounded"
-                type="text"
+
+            <x-input
+                label="Salary"
                 name="salary"
-                placeholder="Salary"
-            />
-            <input
-                class="rounded"
-                type="text"
-                name="tags"
-                placeholder="Tags (comma separated)"
+                placeholder="$30,000"
+                required
             />
 
             @if (request("employer"))
@@ -40,19 +37,14 @@
                     value="{{ request("employer") }}"
                 />
             @else
-                <input
-                    class="rounded"
-                    type="text"
+                <x-input
+                    label="Employer"
                     name="employer"
-                    placeholder="Employer Name"
+                    placeholder="Acme Corp."
+                    required
                 />
             @endif
-            <button
-                class="rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
-                type="submit"
-            >
-                Create
-            </button>
+            <x-button as="button" type="submit">Create</x-button>
         </form>
     </div>
 </x-layout>
