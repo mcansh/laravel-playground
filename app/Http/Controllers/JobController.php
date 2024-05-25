@@ -74,13 +74,20 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        if (request("employer_id")) {
+        $request->validate([
+            "position" => ["required", "min:3"],
+            "location" => ["required", "string"],
+            "salary" => ["required", "numeric"],
+            "employer" => ["required", "string"],
+        ]);
+
+        if ($request->employer_id) {
             $employer = Employer::find($request->employer_id);
         } else {
             $employer = Employer::firstOrCreate(["name" => $request->employer]);
         }
 
-        $tags = self::getTags($request->tags);
+        // $tags = self::getTags($request->tags);
 
         $job = Job::create([
             "position" => $request->position,
@@ -90,7 +97,7 @@ class JobController extends Controller
         ]);
 
         // create the job and attach the tags
-        $job->tags()->attach($tags);
+        // $job->tags()->attach($tags);
 
         return redirect()->route("jobs.show", ["job" => $job]);
     }
