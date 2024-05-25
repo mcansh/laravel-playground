@@ -9,7 +9,10 @@ class Employer extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["name"];
+    // we will allow all fields to be mass assignable
+    // except for the ones that are defined in the guarded property
+    // this is the opposite of $fillable
+    protected $guarded = [];
 
     public function jobs()
     {

@@ -12,13 +12,10 @@ class Job extends Model
 
     use HasFactory;
 
-    protected $fillable = [
-        "position",
-        "location",
-        "salary",
-        "employer_id",
-        "tags",
-    ];
+    // we will allow all fields to be mass assignable
+    // except for the ones that are defined in the guarded property
+    // this is the opposite of $fillable
+    protected $guarded = [];
 
     protected $validations = [
         "position" => "required|string|max:255",
