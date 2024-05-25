@@ -3,7 +3,7 @@
 
     <div class="space-y-6 pt-6">
         <form method="GET">
-            <x-input
+            <x-form-field
                 label="Search"
                 name="search"
                 placeholder="Search employers"

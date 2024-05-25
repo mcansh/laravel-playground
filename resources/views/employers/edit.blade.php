@@ -10,7 +10,7 @@
             @csrf
             @method("PUT")
 
-            <x-input
+            <x-form-field
                 label="Name"
                 name="name"
                 value="{{ $employer->name }}"

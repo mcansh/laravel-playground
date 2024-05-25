@@ -9,21 +9,21 @@
         >
             @csrf
 
-            <x-input
+            <x-form-field
                 label="Position"
                 name="position"
                 placeholder="Shift Leader"
                 required
             />
 
-            <x-input
+            <x-form-field
                 label="Location"
                 name="location"
                 placeholder="Springfield, IL"
                 required
             />
 
-            <x-input
+            <x-form-field
                 label="Salary"
                 name="salary"
                 placeholder="$30,000"
@@ -37,7 +37,7 @@
                     value="{{ request("employer") }}"
                 />
             @else
-                <x-input
+                <x-form-field
                     label="Employer"
                     name="employer"
                     placeholder="Acme Corp."

@@ -10,7 +10,7 @@
     <div class="space-y-6 pt-6">
         <form method="GET">
             <div class="flex flex-wrap gap-4">
-                <x-input
+                <x-form-field
                     label="Search"
                     name="search"
                     placeholder="Search job listings"

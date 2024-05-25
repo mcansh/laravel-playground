@@ -10,14 +10,14 @@
             @csrf
             @method("PATCH")
 
-            <x-input
+            <x-form-field
                 label="Position"
                 name="position"
                 value="{{ $job->position }}"
                 required
             />
 
-            <x-input
+            <x-form-field
                 label="Salary"
                 name="salary"
                 value="{{ $job->salary }}"

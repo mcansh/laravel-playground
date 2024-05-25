@@ -23,7 +23,7 @@
         </div>
 
         <form method="GET">
-            <x-input
+            <x-form-field
                 label="Search"
                 name="search"
                 placeholder="Search job listings"
