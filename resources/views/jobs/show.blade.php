@@ -1,49 +1,73 @@
 <x-layout>
-    <x-slot:heading>Job Listing</x-slot>
+    <x-slot:heading>
+        {{ $job->position }} for {{ $job->employer->name }}
+    </x-slot>
 
-    <div class="space-y-2 pt-2">
-        <h2 class="text-lg font-bold">
-            Employer:
-            <a
-                class="text-indigo-600"
-                href="{{ route("employers.show", $job->employer) }}"
-            >
-                {{ $job->employer->name }}
-            </a>
-        </h2>
-        <h3>Position: {{ $job->position }}</h3>
-        <p>Location: {{ $job->employer->location }}</p>
-        <p>Salary: {{ $job->salary }}</p>
-
-        <h3>Tags:</h3>
-        <ul class="flex space-x-2">
-            @foreach ($job->tags as $tag)
-                <li>
-                    <a
-                        href="{{ route("tags.show", $tag) }}"
-                        class="rounded-full bg-indigo-500 px-2 py-1 text-white"
+    <div>
+        <div class="mt-6 border-t border-gray-100">
+            <dl class="divide-y divide-gray-100">
+                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt class="text-sm font-medium leading-6 text-gray-900">
+                        {{ __("Employer") }}
+                    </dt>
+                    <dd
+                        class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
                     >
-                        {{ $tag->name }}
-                    </a>
-                </li>
-            @endforeach
-        </ul>
-
-        <div class="flex space-x-2 pt-6">
-            <a
-                href="{{ route("jobs.edit", $job) }}"
-                class="block rounded bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-700"
-            >
-                Edit
-            </a>
-
-            <form method="POST" action="{{ route("jobs.destroy", $job) }}">
-                @csrf
-                @method("DELETE")
-                <x-button as="button" type="submit" variant="destroy">
-                    Delete
-                </x-button>
-            </form>
+                        {{ $job->employer->name }}
+                    </dd>
+                </div>
+                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt class="text-sm font-medium leading-6 text-gray-900">
+                        {{ __("Position") }}
+                    </dt>
+                    <dd
+                        class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                    >
+                        {{ $job->position }}
+                    </dd>
+                </div>
+                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt class="text-sm font-medium leading-6 text-gray-900">
+                        {{ __("Location") }}
+                    </dt>
+                    <dd
+                        class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                    >
+                        {{ $job->employer->location }}
+                    </dd>
+                </div>
+                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt class="text-sm font-medium leading-6 text-gray-900">
+                        Salary
+                    </dt>
+                    <dd
+                        class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                    >
+                        {{ $job->salary }}
+                    </dd>
+                </div>
+                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt class="text-sm font-medium leading-6 text-gray-900">
+                        Tags
+                    </dt>
+                    <dd
+                        class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                    >
+                        <ul class="flex flex-wrap gap-2">
+                            @foreach ($job->tags as $tag)
+                                <li>
+                                    <a
+                                        class="rounded-full bg-gray-200 px-2 py-1 text-xs font-semibold text-gray-800 transition duration-150 ease-in-out hover:bg-gray-300"
+                                        href="{{ route("tags.show", $tag) }}"
+                                    >
+                                        {{ $tag->name }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </dd>
+                </div>
+            </dl>
         </div>
     </div>
 </x-layout>
