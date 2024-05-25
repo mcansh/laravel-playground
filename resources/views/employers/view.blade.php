@@ -31,7 +31,7 @@
             />
         </form>
 
-        <div class="grid grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
             @foreach ($jobs as $job)
                 <div
                     class="rounded-lg bg-gray-50 shadow-sm ring-1 ring-gray-900/5"
