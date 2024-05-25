@@ -12,7 +12,7 @@
             </a>
         </h2>
         <h3>Position: {{ $job->position }}</h3>
-        <p>Location: {{ $job->location }}</p>
+        <p>Location: {{ $job->employer->location }}</p>
         <p>Salary: {{ $job->salary }}</p>
 
         <h3>Tags:</h3>

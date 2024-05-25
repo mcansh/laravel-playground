@@ -9,17 +9,11 @@
         >
             @csrf
             @method("PATCH")
+
             <x-input
                 label="Position"
                 name="position"
                 value="{{ $job->position }}"
-                required
-            />
-
-            <x-input
-                label="Location"
-                name="location"
-                value="{{ $job->location }}"
                 required
             />
 

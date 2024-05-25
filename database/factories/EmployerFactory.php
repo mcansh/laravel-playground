@@ -16,8 +16,13 @@ class EmployerFactory extends Factory
      */
     public function definition(): array
     {
+        $city = $this->faker->city();
+        $state = $this->faker->stateAbbr();
+
         return [
             "name" => $this->faker->company(),
+            "location" => "{$city}, {$state}",
+            "website" => $this->faker->url(),
         ];
     }
 }

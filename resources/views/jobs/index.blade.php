@@ -67,7 +67,7 @@
                                     <span class="sr-only">Location</span>
                                 </dt>
                                 <dd class="text-sm leading-6 text-gray-500">
-                                    {{ $job->location }}
+                                    {{ $job->employer->location }}
                                 </dd>
                             </div>
                         </div>

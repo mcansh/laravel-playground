@@ -76,7 +76,6 @@ class JobController extends Controller
     {
         $request->validate([
             "position" => ["required", "min:3"],
-            "location" => ["required", "string"],
             "salary" => ["required", "numeric"],
             "employer" => ["required", "string"],
         ]);
@@ -123,16 +122,27 @@ class JobController extends Controller
      */
     public function update(Request $request, Job $job)
     {
-        $employer = Employer::firstOrCreate(["name" => $request->employer]);
-        $tags = self::getTags($request->tags);
+        $request->validate([
+            "position" => ["required", "min:3"],
+            "salary" => ["required", "numeric"],
+            // optional tags
+            "tags" => ["nullable", "string"],
+        ]);
+
+        $employer = $request->employer_id
+            ? Employer::firstOrCreate(["name" => $request->employer])
+            : null;
+
+        // parse the tags and get the tag ids
+        $tags = $request->tags ? self::getTags($request->tags) : [];
         // update the job tags
         $job->tags()->sync($tags);
 
         $job->update([
             "position" => $request->position,
-            "location" => $request->location,
             "salary" => $request->salary,
-            "employer_id" => $employer->id,
+            // update the employer if it was changed
+            "employer_id" => $employer ? $employer->id : $job->employer_id,
         ]);
 
         return redirect()->route("jobs.show", ["job" => $job]);
@@ -153,13 +163,13 @@ class JobController extends Controller
             fn($tag) => str_replace(" ", "_", strtolower(trim($tag))),
             explode(",", $tags),
         );
-        $tags = [];
+        $tagIds = [];
 
         foreach ($tagNames as $tag) {
             $tag = Tag::firstOrCreate(["name" => $tag]);
-            $tags[] = $tag->id;
+            $tagIds[] = $tag->id;
         }
 
-        return $tags;
+        return $tagIds;
     }
 }

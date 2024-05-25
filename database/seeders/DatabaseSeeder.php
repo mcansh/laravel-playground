@@ -23,6 +23,18 @@ class DatabaseSeeder extends Seeder
             "email" => fake()->unique()->safeEmail(),
         ]);
 
+        Employer::factory()
+            ->create([
+                "name" => "United Wholesale Mortgage",
+                "location" => "Pontiac, MI",
+                "website" => "https://www.uwm.com/",
+            ])
+            ->jobs()
+            ->create([
+                "position" => "Senior UI Engineer",
+                "salary" => 145_000,
+            ]);
+
         // create 100 jobs at 1-10 jobs per employer
         Employer::factory(10)
             ->create()
