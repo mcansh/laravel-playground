@@ -23,7 +23,7 @@
                                 <dd
                                     class="mt-1 text-base font-semibold leading-6 text-gray-900"
                                 >
-                                    {{ $job->salary }}
+                                    {{ Number::currency($job->salary / 100) }}
                                 </dd>
                             </div>
                             <div class="flex-none">
