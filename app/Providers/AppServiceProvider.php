@@ -25,10 +25,5 @@ class AppServiceProvider extends ServiceProvider
     {
         // disable lazy loading queries
         Model::preventLazyLoading();
-
-        // add a gate to check if the user created the job
-        Gate::define("edit-job", function (User $user, Job $job) {
-            return $job->employer->user->is($user);
-        });
     }
 }

@@ -21,13 +21,16 @@ Route::post("/jobs", [JobController::class, "store"])
 Route::get("/jobs/{job}", [JobController::class, "show"])->name("jobs.show");
 Route::get("/jobs/{job}/edit", [JobController::class, "edit"])
     ->name("jobs.edit")
-    ->middleware(["auth", "can:edit-job,job"]);
+    ->middleware("auth")
+    ->can("edit", "job");
 Route::put("/jobs/{job}", [JobController::class, "update"])
     ->name("jobs.update")
-    ->middleware(["auth", "can:edit-job,job"]);
+    ->middleware("auth")
+    ->can("edit", "job");
 Route::delete("/jobs/{job}", [JobController::class, "destroy"])
     ->name("jobs.destroy")
-    ->middleware(["auth", "can:edit-job,job"]);
+    ->middleware("auth")
+    ->can("edit", "job");
 Route::get("/employers", [EmployerController::class, "index"])->name(
     "employers.index",
 );
