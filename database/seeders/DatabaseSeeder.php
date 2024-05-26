@@ -24,11 +24,19 @@ class DatabaseSeeder extends Seeder
             "email" => fake()->unique()->safeEmail(),
         ]);
 
+        $me = User::factory()->create([
+            "first_name" => "Logan",
+            "last_name" => "McAnsh",
+            "email" => "logan@mcan.sh",
+            "password" => "password",
+        ]);
+
         Employer::factory()
             ->create([
                 "name" => "United Wholesale Mortgage",
                 "location" => "Pontiac, MI",
                 "website" => "https://www.uwm.com/",
+                "user_id" => $me->id,
             ])
             ->jobs()
             ->create([

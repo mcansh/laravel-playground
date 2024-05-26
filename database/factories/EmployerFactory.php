@@ -23,6 +23,7 @@ class EmployerFactory extends Factory
             "name" => $this->faker->company(),
             "location" => "{$city}, {$state}",
             "website" => $this->faker->url(),
+            "user_id" => \App\Models\User::factory(),
         ];
     }
 }

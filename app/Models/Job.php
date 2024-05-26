@@ -51,4 +51,9 @@ class Job extends Model
             foreignPivotKey: "job_listing_id",
         );
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
