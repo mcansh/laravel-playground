@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\JobPosted;
 use App\Models\Employer;
 use App\Models\Job;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class JobController extends Controller
 {
@@ -90,10 +92,11 @@ class JobController extends Controller
 
         $job = Job::create([
             "position" => $request->position,
-            "location" => $request->location,
             "salary" => $request->salary,
             "employer_id" => $employer->id,
         ]);
+
+        Mail::to($job->employer->user)->send(new JobPosted($job));
 
         // create the job and attach the tags
         // $job->tags()->attach($tags);

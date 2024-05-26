@@ -20,7 +20,6 @@ class Job extends Model
 
     protected $validations = [
         "position" => "required|string|max:255",
-        "location" => "required|string|max:255",
         "salary" => "required|string|max:255",
         "employer_id" => "required|integer|exists:employers,id",
         "tags" => "nullable|string",
