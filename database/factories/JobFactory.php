@@ -19,8 +19,8 @@ class JobFactory extends Factory
     {
         return [
             "position" => $this->faker->jobTitle(),
-            "salary" =>
-                ($this->faker->numberBetween(30000, 100000) / 1000) * 1000,
+            // salary between $50,000 and $250,000 per year in cents
+            "salary" => $this->faker->numberBetween(5_000_000, 25_000_000),
             "employer_id" => Employer::factory(),
         ];
     }

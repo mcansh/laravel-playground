@@ -3,7 +3,7 @@
     "name",
     "type" => "text",
     "placeholder" => "",
-    "inputmode" => "text",
+    "inputmode" => "",
     "required" => false,
     "disabled" => false,
     "id" => $name,
@@ -18,7 +18,6 @@
             name="{{ $name }}"
             type="{{ $type }}"
             id="{{ $id }}"
-            inputmode="{{ $inputmode }}"
             @class([
                 "block w-full rounded-md border-0 py-1.5 ring-1 ring-1 ring-inset ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6",
                 "pr-10 text-red-900 ring-red-300 placeholder:text-red-300 focus:ring-red-500" => $errors->isNotEmpty(),
@@ -27,6 +26,7 @@
                     $attributes->get("disabled") ?? false,
             ])
             {{ $attributes }}
+            @if ($inputmode) inputmode="{{ $inputmode }}" @endif
             @if ($placeholder) placeholder="{{ $placeholder }}" @endif
             @if ($required) required @endif
             @if ($errors->isNotEmpty())

@@ -9,8 +9,9 @@
 
     <div class="space-y-6 pt-6">
         <form method="GET">
-            <div class="flex flex-wrap gap-4">
+            <div>
                 <x-form-field
+                    type="search"
                     label="Search"
                     name="search"
                     placeholder="Search job listings"
@@ -37,7 +38,7 @@
                                 <dd
                                     class="mt-1 text-base font-semibold leading-6 text-gray-900"
                                 >
-                                    {{ $job->salary }}
+                                    {{ Number::currency($job->salary / 100) }}
                                 </dd>
                             </div>
                             <div class="flex-none">

@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
             ->jobs()
             ->create([
                 "position" => "Senior UI Engineer",
-                "salary" => 145_000,
+                "salary" => 14_500_000, // $145,000
             ])
             ->tags()
             ->createMany([
