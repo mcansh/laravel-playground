@@ -3,6 +3,14 @@
         {{ $job->position }} for {{ $job->employer->name }}
     </x-slot>
 
+    @can("edit-job", $job)
+        <x-slot:action>
+            <x-button as="a" href="{{ route('jobs.edit', $job) }}">
+                Edit
+            </x-button>
+        </x-slot>
+    @endcan
+
     <div>
         <div class="mt-6 border-t border-gray-100">
             <dl class="divide-y divide-gray-100">
