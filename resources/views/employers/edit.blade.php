@@ -5,7 +5,7 @@
         <form
             method="POST"
             class="mt-2 flex flex-col space-y-2"
-            action="/employers/{{ $employer->id }}"
+            action="{{ route("employers.update", $employer) }}"
         >
             @csrf
             @method("PUT")

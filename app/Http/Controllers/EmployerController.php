@@ -40,7 +40,7 @@ class EmployerController extends Controller
             return redirect($paginate->url(1));
         }
 
-        return view("employers/index", ["employers" => $employers]);
+        return view("employers.index", ["employers" => $employers]);
     }
 
     /**
@@ -75,7 +75,7 @@ class EmployerController extends Controller
             return redirect($paginate->url(1));
         }
 
-        return view("employers/view", [
+        return view("employers.show", [
             "employer" => $employer,
             "jobs" => $jobs,
         ]);
@@ -86,7 +86,7 @@ class EmployerController extends Controller
      */
     public function edit(Employer $employer)
     {
-        return view("employers/edit", ["employer" => $employer]);
+        return view("employers.edit", ["employer" => $employer]);
     }
 
     /**
