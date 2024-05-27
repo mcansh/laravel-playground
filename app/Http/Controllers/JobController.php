@@ -88,15 +88,15 @@ class JobController extends Controller
             $employer = Employer::firstOrCreate(["name" => $request->employer]);
         }
 
-        // $tags = self::getTags($request->tags);
-
         $job = Job::create([
             "position" => $request->position,
             "salary" => $request->salary,
             "employer_id" => $employer->id,
-        ]);
+        ])
+            ->tags()
+            ->attach($tags);
 
-        Mail::to($job->employer->user)->send(new JobPosted($job));
+        Mail::to($job->employer->user)->queue(new JobPosted($job));
 
         // create the job and attach the tags
         // $job->tags()->attach($tags);
@@ -136,11 +136,6 @@ class JobController extends Controller
             ? Employer::firstOrCreate(["name" => $request->employer])
             : null;
 
-        // parse the tags and get the tag ids
-        $tags = $request->tags ? self::getTags($request->tags) : [];
-        // update the job tags
-        $job->tags()->sync($tags);
-
         $job->update([
             "position" => $request->position,
             "salary" => $request->salary,
@@ -158,21 +153,5 @@ class JobController extends Controller
     {
         $job->delete();
         return redirect(route("jobs.index"));
-    }
-
-    protected function getTags(string $tags)
-    {
-        $tagNames = array_map(
-            fn($tag) => str_replace(" ", "_", strtolower(trim($tag))),
-            explode(",", $tags),
-        );
-        $tagIds = [];
-
-        foreach ($tagNames as $tag) {
-            $tag = Tag::firstOrCreate(["name" => $tag]);
-            $tagIds[] = $tag->id;
-        }
-
-        return $tagIds;
     }
 }

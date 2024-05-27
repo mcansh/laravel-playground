@@ -1,3 +1,5 @@
+<h1>{{ $job->position }} at {{ $job->employer->name }}</h1>
+
 <h2>Your job posting has been approved!</h2>
 
 <p>Congrats! Your job is now live on our website.</p>

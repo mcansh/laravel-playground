@@ -27,7 +27,7 @@ class JobPosted extends Mailable
      */
     public function envelope(): Envelope
     {
-        return new Envelope(subject: "Job Posted");
+        return new Envelope(subject: "Job post confirmation");
     }
 
     /**
