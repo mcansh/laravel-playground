@@ -14,9 +14,9 @@ Route::get("/", function () {
 Route::view("/contact", "contact");
 
 Route::get("/jobs", [JobController::class, "index"])->name("jobs.index");
-Route::get("/jobs/create", [JobController::class, "create"])->name(
-    "jobs.create",
-);
+Route::get("/jobs/create", [JobController::class, "create"])
+    ->name("jobs.create")
+    ->middleware("auth");
 Route::post("/jobs", [JobController::class, "store"])
     ->name("jobs.store")
     ->middleware("auth");
