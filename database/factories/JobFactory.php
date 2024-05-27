@@ -17,10 +17,12 @@ class JobFactory extends Factory
      */
     public function definition(): array
     {
+        // salary between $50,000 and $250,000 per year in cents rounded to the nearest thousand
+        $salary = $this->faker->numberBetween(5000000, 25000000);
+        $rounded = round($salary, -6); // using -6 because we save salary in cents
         return [
             "position" => $this->faker->jobTitle(),
-            // salary between $50,000 and $250,000 per year in cents
-            "salary" => $this->faker->numberBetween(5_000_000, 25_000_000),
+            "salary" => $rounded,
             "employer_id" => Employer::factory(),
         ];
     }
