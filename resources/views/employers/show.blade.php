@@ -3,23 +3,21 @@
 
     <div class="space-y-6 pt-6">
         <div class="flex items-center justify-between">
-            <p>
+            @can("update", $employer)
                 <x-button
                     as="a"
                     href="{{ route('employers.edit', $employer) }}"
                 >
                     Edit
                 </x-button>
-            </p>
+            @endcan
 
-            <p>
-                <x-button
-                    as="a"
-                    href="{{ route('jobs.create', ['employer' => $employer->id]) }}"
-                >
-                    New Job Listing
-                </x-button>
-            </p>
+            <x-button
+                as="a"
+                href="{{ route('jobs.create', ['employer' => $employer->id]) }}"
+            >
+                New Job Listing
+            </x-button>
         </div>
 
         <form method="GET">
