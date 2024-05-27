@@ -7,7 +7,9 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
-Route::view("/", "home")->name("home");
+Route::get("/", function () {
+    return redirect(route("jobs.index"));
+});
 
 Route::view("/contact", "contact");
 
