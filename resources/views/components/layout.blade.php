@@ -11,7 +11,10 @@
 
         <title>{{ $title ?? $heading }} | {{ config("app.name") }}</title>
 
-        @vite("resources/css/app.css")
+        @vite([
+            "resources/js/app.js",
+            "resources/css/app.css",
+        ])
     </head>
     <body class="h-full">
         <div class="min-h-full">
@@ -258,6 +261,5 @@
                 </main>
             </div>
         </div>
-        <script type="module" src="{{ mix("resources/js/app.js") }}"></script>
     </body>
 </html>
