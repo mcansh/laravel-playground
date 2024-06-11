@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Str;
 
 class Job extends Model
 {
@@ -54,5 +56,26 @@ class Job extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getRouteKey()
+    {
+        return Str::slug($this->employer->name) .
+            "-" .
+            Str::slug($this->position) .
+            "-" .
+            $this->id;
+    }
+
+    public function resolveRouteBinding($value, $field = null)
+    {
+        $id = last(explode("-", $value));
+        $model = parent::resolveRouteBinding($id, $field);
+
+        if (!$model || $model->getRouteKey() === $value) {
+            return $model;
+        }
+
+        throw new HttpResponseException(redirect()->route("jobs.show", $model));
     }
 }
