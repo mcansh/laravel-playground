@@ -22,7 +22,7 @@
                 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div class="flex h-16 justify-between">
                         <div class="flex">
-                            <div class="flex flex-shrink-0 items-center">
+                            <div class="flex shrink-0 items-center">
                                 <img
                                     class="block h-8 w-auto lg:hidden"
                                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
@@ -80,7 +80,7 @@
                                     @csrf
                                     <button
                                         type="submit"
-                                        class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                                        class="inline-flex items-center border-b-2 border-transparent pt-1 px-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
                                     >
                                         Log Out
                                     </button>
@@ -112,7 +112,7 @@
                             {{-- Mobile menu button --}}
                             <button
                                 type="button"
-                                class="relative inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                class="relative inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none"
                                 aria-controls="mobile-menu"
                                 aria-expanded="false"
                             >
@@ -160,7 +160,7 @@
                 {{-- Mobile menu, show/hide based on menu state. --}}
                 @if (request("menu") === "open")
                     <div class="sm:hidden" id="mobile-menu">
-                        <div class="space-y-1 pb-3 pt-2">
+                        <div class="space-y-1 pt-2 pb-3">
                             <x-nav-link
                                 type="mobile"
                                 :active="request()->is('/')"
@@ -183,9 +183,9 @@
                                 Contact
                             </x-nav-link>
                         </div>
-                        <div class="border-t border-gray-200 pb-3 pt-4">
+                        <div class="border-t border-gray-200 pt-4 pb-3">
                             <div class="flex items-center px-4">
-                                <div class="flex-shrink-0">
+                                <div class="shrink-0">
                                     <img
                                         class="h-10 w-10 rounded-full"
                                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -206,7 +206,7 @@
                                 </div>
                                 <button
                                     type="button"
-                                    class="relative ml-auto flex-shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                    class="relative ml-auto shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none"
                                 >
                                     <span class="absolute -inset-1.5"></span>
                                     <span class="sr-only">
