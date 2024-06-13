@@ -92,9 +92,8 @@ class JobController extends Controller
             "position" => $request->position,
             "salary" => $request->salary,
             "employer_id" => $employer->id,
-        ])
-            ->tags()
-            ->attach($tags);
+        ])->tags();
+        // ->attach($tags);
 
         Mail::to($job->employer->user)->queue(new JobPosted($job));
 
