@@ -20,7 +20,7 @@
 @else
     <a
         @class([
-            "inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium",
+            "inline-flex items-center border-b-2 pt-1 px-1 text-sm font-medium",
             $active
                 ? "border-indigo-500 text-gray-900"
                 : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
