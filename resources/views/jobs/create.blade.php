@@ -39,7 +39,7 @@
                     type="text"
                     name="salary"
                     id="salary"
-                    class="block w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    class="block w-full rounded-md border-0 py-1.5 pr-12 pl-7 text-gray-900 ring-1 ring-gray-300 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6"
                     placeholder="30000"
                     aria-describedby="salary-currency"
                     inputmode="numeric"

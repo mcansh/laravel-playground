@@ -14,7 +14,7 @@
     <div>
         <div class="mt-6 border-t border-gray-100">
             <dl class="divide-y divide-gray-100">
-                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                <div class="py-6 px-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt class="text-sm font-medium leading-6 text-gray-900">
                         {{ __("Employer") }}
                     </dt>
@@ -28,7 +28,7 @@
                         </a>
                     </dd>
                 </div>
-                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                <div class="py-6 px-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt class="text-sm font-medium leading-6 text-gray-900">
                         {{ __("Position") }}
                     </dt>
@@ -42,7 +42,7 @@
                         </a>
                     </dd>
                 </div>
-                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                <div class="py-6 px-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt class="text-sm font-medium leading-6 text-gray-900">
                         {{ __("Location") }}
                     </dt>
@@ -52,7 +52,7 @@
                         {{ $job->employer->location }}
                     </dd>
                 </div>
-                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                <div class="py-6 px-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt class="text-sm font-medium leading-6 text-gray-900">
                         Salary
                     </dt>
@@ -62,7 +62,7 @@
                         {{ Number::currency($job->salary / 100) }}
                     </dd>
                 </div>
-                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                <div class="py-6 px-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt class="text-sm font-medium leading-6 text-gray-900">
                         Tags
                     </dt>
@@ -73,7 +73,7 @@
                             @foreach ($job->tags as $tag)
                                 <li>
                                     <a
-                                        class="rounded-full bg-gray-200 px-2 py-1 text-xs font-semibold text-gray-800 transition duration-150 ease-in-out hover:bg-gray-300"
+                                        class="rounded-full bg-gray-200 py-1 px-2 text-xs font-semibold text-gray-800 transition duration-150 ease-in-out hover:bg-gray-300"
                                         href="{{ route("tags.show", $tag) }}"
                                     >
                                         {{ $tag->name }}
