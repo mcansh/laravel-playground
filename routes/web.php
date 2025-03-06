@@ -25,7 +25,7 @@ Route::get("/jobs/{job}/edit", [JobController::class, "edit"])
     ->name("jobs.edit")
     ->middleware("auth")
     ->can("update", "job");
-Route::put("/jobs/{job}", [JobController::class, "update"])
+Route::patch("/jobs/{job}", [JobController::class, "update"])
     ->name("jobs.update")
     ->middleware("auth")
     ->can("update", "job");
@@ -67,7 +67,7 @@ Route::get("/tags/{tag}", [TagController::class, "show"])->name("tags.show");
 Route::get("/tags/{tag}/edit", [TagController::class, "edit"])->name(
     "tags.edit",
 );
-Route::put("/tags/{tag}", [TagController::class, "update"])->name(
+Route::patch("/tags/{tag}", [TagController::class, "update"])->name(
     "tags.update",
 );
 Route::delete("/tags/{tag}", [TagController::class, "destroy"])->name(
