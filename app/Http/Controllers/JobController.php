@@ -85,7 +85,11 @@ class JobController extends Controller
         if ($request->employer_id) {
             $employer = Employer::find($request->employer_id);
         } else {
-            $employer = Employer::firstOrCreate(["name" => $request->employer]);
+            $employer = Employer::firstOrCreate([
+                "name" => $request->employer,
+                "location" => "",
+                "website" => "",
+            ]);
         }
 
         $job = Job::create([
@@ -95,7 +99,7 @@ class JobController extends Controller
         ])->tags();
         // ->attach($tags);
 
-        Mail::to($job->employer->user)->queue(new JobPosted($job));
+        // Mail::to($job->employer->user)->queue(new JobPosted($job));
 
         // create the job and attach the tags
         // $job->tags()->attach($tags);

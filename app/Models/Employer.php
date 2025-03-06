@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -10,7 +9,7 @@ use Illuminate\Support\Str;
 
 class Employer extends Model
 {
-    use HasFactory, HasUlids;
+    use HasFactory;
 
     // we will allow all fields to be mass assignable
     // except for the ones that are defined in the guarded property

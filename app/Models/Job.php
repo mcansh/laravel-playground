@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -13,7 +12,7 @@ class Job extends Model
 {
     protected $table = "job_listings";
 
-    use HasFactory, HasUlids;
+    use HasFactory;
 
     // we will allow all fields to be mass assignable
     // except for the ones that are defined in the guarded property

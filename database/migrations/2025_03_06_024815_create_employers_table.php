@@ -10,8 +10,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::table("employers", function (Blueprint $table) {
-            $table->foreignIdFor(App\Models\User::class);
+        Schema::create("employers", function (Blueprint $table) {
+            $table->id();
+            $table->string("name");
+            $table->string("description")->nullable();
+            $table->string("location");
+            $table->string("website");
+            $table->timestamps();
         });
     }
 
@@ -20,8 +25,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::table("employers", function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists("employers");
     }
 };
