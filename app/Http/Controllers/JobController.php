@@ -52,7 +52,7 @@ class JobController extends Controller
             return redirect($paginate->url(1));
         }
 
-        return view("jobs/index", ["jobs" => $jobs]);
+        return view("jobs.index", ["jobs" => $jobs]);
     }
 
     /**
@@ -68,7 +68,7 @@ class JobController extends Controller
             }
         }
 
-        return view("jobs/create");
+        return view("jobs.create");
     }
 
     /**
@@ -112,7 +112,7 @@ class JobController extends Controller
      */
     public function show(Job $job)
     {
-        return view("jobs/show", ["job" => $job]);
+        return view("jobs.show", ["job" => $job]);
     }
 
     /**
@@ -120,7 +120,7 @@ class JobController extends Controller
      */
     public function edit(Job $job)
     {
-        return view("jobs/edit", ["job" => $job]);
+        return view("jobs.edit", ["job" => $job]);
     }
 
     /**

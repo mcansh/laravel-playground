@@ -12,7 +12,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        return view("tags/index", ["tags" => Tag::withCount("jobs")->get()]);
+        return view("tags.index", ["tags" => Tag::withCount("jobs")->get()]);
     }
 
     /**
@@ -20,7 +20,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view("tags/create");
+        return view("tags.create");
     }
 
     /**
@@ -37,7 +37,7 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        return view("tags/show", ["tag" => $tag->load("jobs.employer")]);
+        return view("tags.show", ["tag" => $tag->load("jobs.employer")]);
     }
 
     /**
@@ -45,7 +45,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        return view("tags/edit", ["tag" => $tag]);
+        return view("tags.edit", ["tag" => $tag]);
     }
 
     /**

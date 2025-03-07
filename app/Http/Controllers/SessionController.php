@@ -38,6 +38,6 @@ class SessionController extends Controller
     public function destroy()
     {
         Auth::logout();
-        return redirect(route("home"));
+        return redirect(route("jobs.index"));
     }
 }
