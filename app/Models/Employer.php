@@ -16,6 +16,12 @@ class Employer extends Model
     // this is the opposite of $fillable
     protected $guarded = [];
 
+    protected $validations = [
+        "name" => "required|string|max:255",
+        "description" => "string|max:255",
+        "location" => "string|max:255"
+    ];
+
     public function jobs()
     {
         return $this->hasMany(Job::class);
