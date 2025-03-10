@@ -35,7 +35,7 @@
 
                         <div class="flex-none self-end pt-4 px-6">
                             <dt class="sr-only">Status</dt>
-                            @if ($job->hiring)
+                            @if ($employer->job->hiring)
                                 <dd
                                     class="inline-flex items-center rounded-md bg-green-50 py-1 px-2 text-xs font-medium text-green-700 ring-1 ring-green-600/20 ring-inset"
                                 >
