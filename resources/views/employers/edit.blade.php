@@ -17,6 +17,20 @@
                 required
             />
 
+            <x-form-field
+                label="Description"
+                name="description"
+                value="{{ $employer->description }}"
+                required
+            />
+
+            <x-form-field
+                label="Location"
+                name="location"
+                value="{{ $employer->location }}"
+                required
+            />
+
             <x-button as="button" type="submit">Update</x-button>
         </form>
     </div>

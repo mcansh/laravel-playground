@@ -22,14 +22,9 @@
                 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div class="flex h-16 justify-between">
                         <div class="flex">
-                            <div class="flex-shrink-0 flex items-center">
+                            <div class="shrink-0 flex items-center">
                                 <img
-                                    class="block h-8 w-auto lg:hidden"
-                                    src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-                                    alt="Your Company"
-                                />
-                                <img
-                                    class="hidden h-8 w-auto lg:block"
+                                    class="block size-8"
                                     src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
                                     alt="Your Company"
                                 />
@@ -185,7 +180,7 @@
                         </div>
                         <div class="border-t border-gray-200 pt-4 pb-3">
                             <div class="flex items-center px-4">
-                                <div class="flex-shrink-0">
+                                <div class="shrink-0">
                                     <img
                                         class="h-10 w-10 rounded-full"
                                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -206,7 +201,7 @@
                                 </div>
                                 <button
                                     type="button"
-                                    class="flex-shrink-0 relative ml-auto rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none"
+                                    class="shrink-0 relative ml-auto rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none"
                                 >
                                     <span class="absolute -inset-1.5"></span>
                                     <span class="sr-only">
