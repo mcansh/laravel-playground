@@ -35,11 +35,19 @@
 
                         <div class="flex-none self-end pt-4 px-6">
                             <dt class="sr-only">Status</dt>
-                            <dd
-                                class="inline-flex items-center rounded-md bg-green-50 py-1 px-2 text-xs font-medium text-green-700 ring-1 ring-green-600/20 ring-inset"
-                            >
-                                Hiring
-                            </dd>
+                            @if ($job->hiring)
+                                <dd
+                                    class="inline-flex items-center rounded-md bg-green-50 py-1 px-2 text-xs font-medium text-green-700 ring-1 ring-green-600/20 ring-inset"
+                                >
+                                    Hiring
+                                </dd>
+                            @else
+                                <dd
+                                    class="inline-flex items-center rounded-md bg-red-50 py-1 px-2 text-xs font-medium text-red-700 ring-1 ring-red-600/20 ring-inset"
+                                >
+                                    Not Hiring
+                                </dd>
+                            @endif
                         </div>
                     </dl>
                     <div class="mt-6 border-t border-gray-900/5 py-6 px-6">

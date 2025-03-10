@@ -52,7 +52,6 @@ class EmployerController extends Controller
 
         if ($search) {
             // TODO: use full-text search
-            /** @var LengthAwarePaginator */
             $paginate = $employer
                 ->jobs()
                 ->where("position", "like", "%$search%")
@@ -60,7 +59,6 @@ class EmployerController extends Controller
 
             $jobs = $paginate->withQueryString();
         } else {
-            /** @var LengthAwarePaginator */
             $paginate = $employer->jobs()->paginate(self::$perPage);
             $jobs = $paginate->withQueryString();
         }

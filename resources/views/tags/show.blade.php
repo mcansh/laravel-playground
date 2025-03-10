@@ -28,11 +28,19 @@
                             </div>
                             <div class="flex-none">
                                 <dt class="sr-only">Status</dt>
-                                <dd
-                                    class="inline-flex items-center rounded-md bg-green-50 py-1 px-2 text-xs font-medium text-green-700 ring-1 ring-green-600/20 ring-inset"
-                                >
-                                    Hiring
-                                </dd>
+                                @if ($job->hiring)
+                                    <dd
+                                        class="inline-flex items-center rounded-md bg-green-50 py-1 px-2 text-xs font-medium text-green-700 ring-1 ring-green-600/20 ring-inset"
+                                    >
+                                        Hiring
+                                    </dd>
+                                @else
+                                    <dd
+                                        class="inline-flex items-center rounded-md bg-red-50 py-1 px-2 text-xs font-medium text-red-700 ring-1 ring-red-600/20 ring-inset"
+                                    >
+                                        Not Hiring
+                                    </dd>
+                                @endif
                             </div>
                         </div>
                         <div class="px-3">

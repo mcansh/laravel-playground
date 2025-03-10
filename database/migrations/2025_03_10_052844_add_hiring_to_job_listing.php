@@ -10,10 +10,8 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create("tags", function (Blueprint $table) {
-            $table->id();
-            $table->string("name")->unique();
-            $table->timestamps();
+        Schema::table("job_listings", function (Blueprint $table) {
+            $table->boolean("hiring")->default(true);
         });
     }
 
@@ -22,6 +20,8 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists("tags");
+        Schema::table("job_listings", function (Blueprint $table) {
+            $table->dropColumn("hiring");
+        });
     }
 };

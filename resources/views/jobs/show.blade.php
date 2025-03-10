@@ -44,7 +44,7 @@
                 </div>
                 <div class="py-6 px-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt class="text-sm font-medium leading-6 text-gray-900">
-                        {{ __("Location") }}
+                        Location
                     </dt>
                     <dd
                         class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
@@ -70,20 +70,16 @@
                         class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
                     >
                         <ul class="flex flex-wrap gap-2">
-                            {{-- check if job has tags property --}}
-
-                            {{--
-                                @foreach ($job->tags as $tag)
+                            @foreach ($job->tags as $tag)
                                 <li>
-                                <a
-                                class="rounded-full bg-gray-200 py-1 px-2 text-xs font-semibold text-gray-800 transition duration-150 ease-in-out hover:bg-gray-300"
-                                href="{{ route("tags.show", $tag) }}"
-                                >
-                                {{ $tag->name }}
-                                </a>
+                                    <a
+                                        class="rounded-full bg-gray-200 py-1 px-2 text-xs font-semibold text-gray-800 transition duration-150 ease-in-out hover:bg-gray-300"
+                                        href="{{ route("tags.show", $tag) }}"
+                                    >
+                                        {{ $tag->name }}
+                                    </a>
                                 </li>
-                                @endforeach
-                            --}}
+                            @endforeach
                         </ul>
                     </dd>
                 </div>

@@ -24,6 +24,19 @@
                 required
             />
 
+            <select name="tags" class="">
+                <option value="">Select a tag</option>
+                @foreach ($tags as $tag)
+                    <pre>{{ $job->tags->contains($tag) }}</pre>
+                    <option
+                        value="{{ $tag->id }}"
+                        {{ $job->tags->contains($tag) ? "selected" : "" }}
+                    >
+                        {{ $tag->name }}
+                    </option>
+                @endforeach
+            </select>
+
             <div class="flex space-x-2">
                 <x-button as="button" type="submit">Update</x-button>
 

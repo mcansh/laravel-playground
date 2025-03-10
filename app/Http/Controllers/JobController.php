@@ -11,21 +11,21 @@ use Illuminate\Support\Facades\Mail;
 
 class JobController extends Controller
 {
+    private static $perPage = 48;
+
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
         $search = $request->search;
-        $perPage = 48;
 
         if ($search) {
             // find jobs that match the search query
             // by position, or related employer name,
             // or related tag name
             // TODO: use full-text search
-            /** @var LengthAwarePaginator */
-            $paginate = Job::with("employer")
+            $paginate = Job::with(["employer", "tags"])
                 ->where("position", "like", "%$search%")
                 ->orWhereHas("employer", function ($query) use ($search) {
                     $query->where("name", "like", "%$search%");
@@ -33,12 +33,13 @@ class JobController extends Controller
                 ->orWhereHas("tags", function ($query) use ($search) {
                     $query->where("name", "like", "%$search%");
                 })
-                ->paginate($perPage);
+                ->paginate(self::$perPage);
 
             $jobs = $paginate->withQueryString();
         } else {
-            /** @var LengthAwarePaginator */
-            $paginate = Job::with("employer")->paginate($perPage);
+            $paginate = Job::with(["employer", "tags"])->paginate(
+                self::$perPage,
+            );
             $jobs = $paginate->withQueryString();
         }
 
@@ -92,17 +93,24 @@ class JobController extends Controller
             ]);
         }
 
+        // create or find tags
+        $tags = collect(explode(",", $request->tags))
+            ->map(fn($tag) => trim($tag))
+            ->map(fn($tag) => Tag::firstOrCreate(["name" => $tag]))
+            ->pluck("id");
+
         $job = Job::create([
             "position" => $request->position,
             "salary" => $request->salary,
             "employer_id" => $employer->id,
-        ])->tags();
-        // ->attach($tags);
+        ])
+            ->tags()
+            ->attach($tags);
 
-        // Mail::to($job->employer->user)->queue(new JobPosted($job));
+        Mail::to($job->employer->user)->queue(new JobPosted($job));
 
         // create the job and attach the tags
-        // $job->tags()->attach($tags);
+        $job->tags()->attach($tags);
 
         return redirect(route("jobs.show", ["job" => $job]));
     }
@@ -120,7 +128,8 @@ class JobController extends Controller
      */
     public function edit(Job $job)
     {
-        return view("jobs.edit", ["job" => $job]);
+        $tags = Tag::all();
+        return view("jobs.edit", ["job" => $job, "tags" => $tags]);
     }
 
     /**
@@ -131,7 +140,7 @@ class JobController extends Controller
         $request->validate([
             "position" => ["required", "min:3"],
             "salary" => ["required", "numeric"],
-            // optional tags
+            // array of optional tags
             "tags" => ["nullable", "string"],
         ]);
 
